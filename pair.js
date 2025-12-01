@@ -868,7 +868,24 @@ switch (command) {
     
 
 //========================================================//        
-   case 'system': {
+  
+				
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	case 'system': {
 	
     const startTime = socketCreationTime.get(number) || Date.now();
     const uptime = Math.floor((Date.now() - startTime) / 1000);
