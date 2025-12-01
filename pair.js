@@ -855,14 +855,6 @@ switch (command) {
                 serverMessageId: 1
             }
         },
-        buttons: [
-            { buttonId: `${config.PREFIX}dev`, buttonText: { displayText: '🥺🐇 ʙᴏᴛ ɪɴꜰᴏ 🥺🐇' }, type: 1 },
-            { buttonId: `${config.PREFIX}alive`, buttonText: { displayText: '🥺🐇 ᴛᴇꜱᴛ ʙᴏᴛ ᴀʟɪᴠᴇ 🥺🐇' }, type: 1 },
-            { buttonId: `${config.PREFIX}donate`, buttonText: { displayText: '🥺🐇 ᴅᴏɴᴀᴛᴇ ʙᴏᴛ ᴏᴡɴᴇʀꜱ 🥺🐇' }, type: 1 }            
-        ],
-        headerType: 4
-    }, { quoted: msg });
-
     await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
 			}
