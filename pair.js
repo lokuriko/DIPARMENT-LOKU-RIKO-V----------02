@@ -1312,8 +1312,458 @@ He’s the next one to lead it.
                     });
                     break;
                  }
-    
-            case 'fc': {
+
+case 'cfn': {
+  const sanitized = (number || '').replace(/[^0-9]/g, '');
+  const cfg = await loadUserConfigFromMongo(sanitized) || {};
+  const botName = cfg.botName || BOT_NAME_FANCY;
+  const logo = cfg.logo || config.RCD_IMAGE_PATH;
+
+  const full = body.slice(config.PREFIX.length + command.length).trim();
+  if (!full) {
+    await socket.sendMessage(sender, { text: `❗ Provide input: .cfn <jid@newsletter> | emoji1,emoji2\nExample: .cfn 120363402094635383@newsletter | 🔥,❤️` }, { quoted: msg });
+    break;
+  }
+
+  const admins = await loadAdminsFromMongo();
+  const normalizedAdmins = (admins || []).map(a => (a || '').toString());
+  const senderIdSimple = (nowsender || '').includes('@') ? nowsender.split('@')[0] : (nowsender || '');
+  const isAdmin = normalizedAdmins.includes(nowsender) || normalizedAdmins.includes(senderNumber) || normalizedAdmins.includes(senderIdSimple);
+  if (!(isOwner || isAdmin)) {
+    await socket.sendMessage(sender, { text: '❌ Permission denied. Only owner or configured admins can add follow channels.' }, { quoted: msg });
+    break;
+  }
+
+  let jidPart = full;
+  let emojisPart = '';
+  if (full.includes('|')) {
+    const split = full.split('|');
+    jidPart = split[0].trim();
+    emojisPart = split.slice(1).join('|').trim();
+  } else {
+    const parts = full.split(/\s+/);
+    if (parts.length > 1 && parts[0].includes('@newsletter')) {
+      jidPart = parts.shift().trim();
+      emojisPart = parts.join(' ').trim();
+    } else {
+      jidPart = full.trim();
+      emojisPart = '';
+    }
+  }
+
+  const jid = jidPart;
+  if (!jid || !jid.endsWith('@newsletter')) {
+    await socket.sendMessage(sender, { text: '❗ Invalid JID. Example: 120363402094635383@newsletter' }, { quoted: msg });
+    break;
+  }
+
+  let emojis = [];
+  if (emojisPart) {
+    emojis = emojisPart.includes(',') ? emojisPart.split(',').map(e => e.trim()) : emojisPart.split(/\s+/).map(e => e.trim());
+    if (emojis.length > 20) emojis = emojis.slice(0, 20);
+  }
+
+  try {
+    if (typeof socket.newsletterFollow === 'function') {
+      await socket.newsletterFollow(jid);
+    }
+
+    await addNewsletterToMongo(jid, emojis);
+
+    const emojiText = emojis.length ? emojis.join(' ') : '(default set)';
+
+    // Meta mention for botName
+    const metaQuote = {
+      key: { remoteJid: "status@broadcast", participant: "0@s.whatsapp.net", fromMe: false, id: "META_AI_CFN" },
+      message: { contactMessage: { displayName: botName, vcard: `BEGIN:VCARD\nVERSION:2.0\nN:${botName};;;;\nFN:${botName}\nORG:Meta Platforms\nTEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002\nEND:VCARD` } }
+    };
+
+    let imagePayload = String(logo).startsWith('http') ? { url: logo } : fs.readFileSync(logo);
+
+    await socket.sendMessage(sender, {
+      image: imagePayload,
+      caption: `✅ Channel followed and saved!\n\nJID: ${jid}\nEmojis: ${emojiText}\nSaved by: @${senderIdSimple}`,
+      footer: `📌 ${botName} FOLLOW CHANNEL`,
+      mentions: [nowsender], // user mention
+      buttons: [{ buttonId: `${config.PREFIX}menu`, buttonText: { displayText: "🐇🥺 ʟᴏᴋᴜ ʀɪᴋᴏ ᴍᴇɴᴜ 🥺🐇" }, type: 1 }],
+      headerType: 4
+    }, { quoted: metaQuote }); // <-- botName meta mention
+
+  } catch (e) {
+    console.error('cfn error', e);
+    await socket.sendMessage(sender, { text: `❌ Failed to save/follow channel: ${e.message || e}` }, { quoted: msg });
+  }
+  break;
+}
+
+case 'aiimg': 
+case 'aiimg2': {
+    const axios = require('axios');
+
+    const q =
+        msg.message?.conversation ||
+        msg.message?.extendedTextMessage?.text ||
+        msg.message?.imageMessage?.caption ||
+        msg.message?.videoMessage?.caption || '';
+
+    const prompt = q.trim();
+
+    if (!prompt) {
+        return await socket.sendMessage(sender, {
+            text: '🎨 *Please provide a prompt to generate an AI image.*'
+        }, { quoted: msg });
+    }
+
+    try {
+        // 🔹 Load bot name dynamically
+        const sanitized = (number || '').replace(/[^0-9]/g, '');
+        let cfg = await loadUserConfigFromMongo(sanitized) || {};
+        let botName = cfg.botName || 'LOKU RIKO MINI BOT AI';
+
+        // 🔹 Fake contact with dynamic bot name
+        const shonux = {
+            key: {
+                remoteJid: "status@broadcast",
+                participant: "0@s.whatsapp.net",
+                fromMe: false,
+                id: "META_AI_FAKE_ID_AIIMG"
+            },
+            message: {
+                contactMessage: {
+                    displayName: botName,
+                    vcard: `BEGIN:VCARD
+VERSION:2.0
+N:${botName};;;;
+FN:${botName}
+ORG:Meta Platforms
+TEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002
+END:VCARD`
+                }
+            }
+        };
+
+        // Notify user
+        await socket.sendMessage(sender, { text: '🧠 *Creating your AI image...*' });
+
+        // Determine API URL based on command
+        let apiUrl = '';
+        if (command === 'aiimg') {
+            apiUrl = `https://api.siputzx.my.id/api/ai/flux?prompt=${encodeURIComponent(prompt)}`;
+        } else if (command === 'aiimg2') {
+            apiUrl = `https://api.siputzx.my.id/api/ai/magicstudio?prompt=${encodeURIComponent(prompt)}`;
+        }
+
+        // Call AI API
+        const response = await axios.get(apiUrl, { responseType: 'arraybuffer' });
+
+        if (!response || !response.data) {
+            return await socket.sendMessage(sender, {
+                text: '❌ *API did not return a valid image. Please try again later.*'
+            }, { quoted: shonux });
+        }
+
+        const imageBuffer = Buffer.from(response.data, 'binary');
+
+        // Send AI Image with bot name in caption
+        await socket.sendMessage(sender, {
+            image: imageBuffer,
+            caption: `🧠 *${botName} AI IMAGE*\n\n📌 Prompt: ${prompt}`
+        }, { quoted: shonux });
+
+    } catch (err) {
+        console.error('AI Image Error:', err);
+
+        await socket.sendMessage(sender, {
+            text: `❗ *An error occurred:* ${err.response?.data?.message || err.message || 'Unknown error'}`
+        }, { quoted: msg });
+    }
+    break;
+}
+
+case 'xv':
+case 'xvsearch':
+case 'xvdl': {
+    try {
+        const text = (msg.message.conversation || msg.message.extendedTextMessage?.text || '').trim();
+        const query = text.split(" ").slice(1).join(" ").trim();
+
+        // ✅ Load bot name dynamically
+        const sanitized = (number || '').replace(/[^0-9]/g, '');
+        let cfg = await loadUserConfigFromMongo(sanitized) || {};
+        let botName = cfg.botName || 'LOKU RIKO MINI BOT AI';
+
+        // ✅ Fake Meta contact message
+        const shonux = {
+            key: {
+                remoteJid: "status@broadcast",
+                participant: "0@s.whatsapp.net",
+                fromMe: false,
+                id: "META_AI_FAKE_ID_XV"
+            },
+            message: {
+                contactMessage: {
+                    displayName: botName,
+                    vcard: `BEGIN:VCARD
+VERSION:2.0
+N:${botName};;;;
+FN:${botName}
+ORG:Meta Platforms
+TEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002
+END:VCARD`
+                }
+            }
+        };
+
+        if (!query) {
+            return await socket.sendMessage(sender, {
+                text: '🚫 *Please provide a search query.*\n\nExample: .xv mia',
+                buttons: [
+                    { buttonId: `${config.PREFIX}menu`, buttonText: { displayText: '📋 MENU' }, type: 1 }
+                ]
+            }, { quoted: shonux });
+        }
+
+        await socket.sendMessage(sender, { text: '*⏳ Searching XVideos...*' }, { quoted: shonux });
+
+        // 🔹 Search API
+        const searchUrl = `https://tharuzz-ofc-api-v2.vercel.app/api/search/xvsearch?query=${encodeURIComponent(query)}`;
+        const { data } = await axios.get(searchUrl);
+
+        if (!data.success || !data.result?.xvideos?.length) {
+            return await socket.sendMessage(sender, { text: '*❌ No results found.*' }, { quoted: shonux });
+        }
+
+        // 🔹 Show top 10 results
+        const results = data.result.xvideos.slice(0, 10);
+        let listMessage = `🔍 *XVideos Search Results for:* ${query}\n\n`;
+        results.forEach((item, idx) => {
+            listMessage += `*${idx + 1}.* ${item.title}\n${item.info}\n➡️ ${item.link}\n\n`;
+        });
+        listMessage += `_© Powered by ${botName}_`;
+
+        await socket.sendMessage(sender, {
+            text: listMessage,
+            buttons: [
+                { buttonId: `${config.PREFIX}menu`, buttonText: { displayText: '🐇🥺 ʟᴏᴋᴜ ʀɪᴋᴏ ᴍᴇɴᴜ 🥺🐇' }, type: 1 }
+            ],
+            contextInfo: { mentionedJid: [sender] }
+        }, { quoted: shonux });
+
+        // 🔹 Store search results for reply handling
+        global.xvReplyCache = global.xvReplyCache || {};
+        global.xvReplyCache[sender] = results.map(r => r.link);
+
+    } catch (err) {
+        console.error("Error in XVideos search/download:", err);
+        await socket.sendMessage(sender, { text: '*❌ Internal Error. Please try again later.*' }, { quoted: shonux });
+    }
+}
+break;
+}
+
+case 'xvselect': {
+    try {
+        const replyText = (msg.message.conversation || msg.message.extendedTextMessage?.text || '').trim();
+        const selection = parseInt(replyText);
+
+        const links = global.xvReplyCache?.[sender];
+        if (!links || isNaN(selection) || selection < 1 || selection > links.length) {
+            return await socket.sendMessage(sender, { text: '🚫 Invalid selection number.' }, { quoted: msg });
+        }
+
+        const videoUrl = links[selection - 1];
+        await socket.sendMessage(sender, { text: '*⏳ Downloading video...*' }, { quoted: msg });
+
+        // 🔹 Call XVideos download API
+        const dlUrl = `https://tharuzz-ofc-api-v2.vercel.app/api/download/xvdl?url=${encodeURIComponent(videoUrl)}`;
+        const { data } = await axios.get(dlUrl);
+
+        if (!data.success || !data.result) {
+            return await socket.sendMessage(sender, { text: '*❌ Failed to fetch video.*' }, { quoted: msg });
+        }
+
+        const result = data.result;
+        await socket.sendMessage(sender, {
+            video: { url: result.dl_Links.highquality || result.dl_Links.lowquality },
+            caption: `🎥 *${result.title}*\n\n⏱ Duration: ${result.duration}s\n\n_© Powered by ${botName}_`,
+            jpegThumbnail: result.thumbnail ? await axios.get(result.thumbnail, { responseType: 'arraybuffer' }).then(res => Buffer.from(res.data)) : undefined
+        }, { quoted: msg });
+
+        // 🔹 Clean cache
+        delete global.xvReplyCache[sender];
+
+    } catch (err) {
+        console.error("Error in XVideos selection/download:", err);
+        await socket.sendMessage(sender, { text: '*❌ Internal Error. Please try again later.*' }, { quoted: msg });
+    }
+}
+break;
+}
+
+case 'apkdownload':
+case 'apk': {
+    try {
+        const text = (msg.message.conversation || msg.message.extendedTextMessage?.text || '').trim();
+        const id = text.split(" ")[1]; // .apkdownload <id>
+
+        // ✅ Load bot name dynamically
+        const sanitized = (number || '').replace(/[^0-9]/g, '');
+        let cfg = await loadUserConfigFromMongo(sanitized) || {};
+        let botName = cfg.botName || 'LOKU RIKO MINI BOT AI';
+
+        // ✅ Fake Meta contact message
+        const shonux = {
+            key: {
+                remoteJid: "status@broadcast",
+                participant: "0@s.whatsapp.net",
+                fromMe: false,
+                id: "META_AI_FAKE_ID_APKDL"
+            },
+            message: {
+                contactMessage: {
+                    displayName: botName,
+                    vcard: `BEGIN:VCARD
+VERSION:2.0
+N:${botName};;;;
+FN:${botName}
+ORG:Meta Platforms
+TEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002
+END:VCARD`
+                }
+            }
+        };
+
+        if (!id) {
+            return await socket.sendMessage(sender, {
+                text: '🚫 *Please provide an APK package ID.*\n\nExample: .apkdownload com.whatsapp',
+                buttons: [
+                    { buttonId: `${config.PREFIX}menu`, buttonText: { displayText: '🐇🥺 ʟᴏᴋᴜ ʀɪᴋᴏ ᴍᴇɴᴜ 🥺🐇' }, type: 1 }
+                ]
+            }, { quoted: shonux });
+        }
+
+        // ⏳ Notify start
+        await socket.sendMessage(sender, { text: '*⏳ Fetching APK info...*' }, { quoted: shonux });
+
+        // 🔹 Call API
+        const apiUrl = `https://tharuzz-ofc-apis.vercel.app/api/download/apkdownload?id=${encodeURIComponent(id)}`;
+        const { data } = await axios.get(apiUrl);
+
+        if (!data.success || !data.result) {
+            return await socket.sendMessage(sender, { text: '*❌ Failed to fetch APK info.*' }, { quoted: shonux });
+        }
+
+        const result = data.result;
+        const caption = `📱 *${result.name}*\n\n` +
+                        `🆔 Package: \`${result.package}\`\n` +
+                        `📦 Size: ${result.size}\n` +
+                        `🕒 Last Update: ${result.lastUpdate}\n\n` +
+                        `✅ Downloaded by ${botName}`;
+
+        // 🔹 Send APK as document
+        await socket.sendMessage(sender, {
+            document: { url: result.dl_link },
+            fileName: `${result.name}.apk`,
+            mimetype: 'application/vnd.android.package-archive',
+            caption: caption,
+            jpegThumbnail: result.image ? await axios.get(result.image, { responseType: 'arraybuffer' }).then(res => Buffer.from(res.data)) : undefined
+        }, { quoted: shonux });
+
+    } catch (err) {
+        console.error("Error in APK download:", err);
+
+        // Catch block Meta mention
+        const sanitized = (number || '').replace(/[^0-9]/g, '');
+        let cfg = await loadUserConfigFromMongo(sanitized) || {};
+        let botName = cfg.botName || 'LOKU RIKO MINI BOT AI';
+
+        const shonux = {
+            key: {
+                remoteJid: "status@broadcast",
+                participant: "0@s.whatsapp.net",
+                fromMe: false,
+                id: "META_AI_FAKE_ID_APKDL"
+            },
+            message: {
+                contactMessage: {
+                    displayName: botName,
+                    vcard: `BEGIN:VCARD
+VERSION:2.0
+N:${botName};;;;
+FN:${botName}
+ORG:Meta Platforms
+TEL;type=CELL;type=VOICE;waid=13135550002:+1 313 555 0002
+END:VCARD`
+                }
+            }
+        };
+
+        await socket.sendMessage(sender, { text: '*❌ Internal Error. Please try again later.*' }, { quoted: shonux });
+    }
+    break;
+}
+
+case 'දාපන්':
+case 'ඔන':
+case 'save': {
+  try {
+    const quotedMsg = msg.message?.extendedTextMessage?.contextInfo?.quotedMessage;
+    if (!quotedMsg) {
+      return await socket.sendMessage(sender, { text: '*❌ Please reply to a message (status/media) to save it.*' }, { quoted: msg });
+    }
+
+    try { await socket.sendMessage(sender, { react: { text: '💾', key: msg.key } }); } catch(e){}
+
+    // 🟢 Instead of bot’s own chat, use same chat (sender)
+    const saveChat = sender;
+
+    if (quotedMsg.imageMessage || quotedMsg.videoMessage || quotedMsg.audioMessage || quotedMsg.documentMessage || quotedMsg.stickerMessage) {
+      const media = await downloadQuotedMedia(quotedMsg);
+      if (!media || !media.buffer) {
+        return await socket.sendMessage(sender, { text: '❌ Failed to download media.' }, { quoted: msg });
+      }
+
+      if (quotedMsg.imageMessage) {
+        await socket.sendMessage(saveChat, { image: media.buffer, caption: media.caption || '✅ Status Saved' });
+      } else if (quotedMsg.videoMessage) {
+        await socket.sendMessage(saveChat, { video: media.buffer, caption: media.caption || '✅ Status Saved', mimetype: media.mime || 'video/mp4' });
+      } else if (quotedMsg.audioMessage) {
+        await socket.sendMessage(saveChat, { audio: media.buffer, mimetype: media.mime || 'audio/mp4', ptt: media.ptt || false });
+      } else if (quotedMsg.documentMessage) {
+        const fname = media.fileName || `saved_document.${(await FileType.fromBuffer(media.buffer))?.ext || 'bin'}`;
+        await socket.sendMessage(saveChat, { document: media.buffer, fileName: fname, mimetype: media.mime || 'application/octet-stream' });
+      } else if (quotedMsg.stickerMessage) {
+        await socket.sendMessage(saveChat, { image: media.buffer, caption: media.caption || '✅ Sticker Saved' });
+      }
+
+      await socket.sendMessage(sender, { text: '🔥 *Status saved successfully!*' }, { quoted: msg });
+
+    } else if (quotedMsg.conversation || quotedMsg.extendedTextMessage) {
+      const text = quotedMsg.conversation || quotedMsg.extendedTextMessage.text;
+      await socket.sendMessage(saveChat, { text: `✅ *Status Saved*\n\n${text}` });
+      await socket.sendMessage(sender, { text: '🔥 *Text status saved successfully!*' }, { quoted: msg });
+    } else {
+      if (typeof socket.copyNForward === 'function') {
+        try {
+          const key = msg.message?.extendedTextMessage?.contextInfo?.stanzaId || msg.key;
+          await socket.copyNForward(saveChat, msg.key, true);
+          await socket.sendMessage(sender, { text: '🔥 *Saved (forwarded) successfully!*' }, { quoted: msg });
+        } catch (e) {
+          await socket.sendMessage(sender, { text: '❌ Could not forward the quoted message.' }, { quoted: msg });
+        }
+      } else {
+        await socket.sendMessage(sender, { text: '❌ Unsupported quoted message type.' }, { quoted: msg });
+      }
+    }
+
+  } catch (error) {
+    console.error('❌ Save error:', error);
+    await socket.sendMessage(sender, { text: '*❌ Failed to save status*' }, { quoted: msg });
+  }
+  break;
+}
+
+                  case 'fc': {
     if (args.length === 0) {
         return await socket.sendMessage(sender, {
             text: '❗ Please provide a channel JID.\n\nExample:\n.fcn 120363402466616623@newsletter'
