@@ -798,7 +798,7 @@ He’s the next one to lead it.
     }
          case 'system':
     await socket.sendMessage(sender, {
-        image: { 'https://iili.io/fxRzRXs.md.png' },
+        image: { url: config.RCD_IMAGE_PATH },
         caption:
             `┏━━【 ✨ BOT STATUS DASHBOARD 】━━◉\n` +
             `┃\n` +
@@ -812,16 +812,15 @@ He’s the next one to lead it.
             `┣ ⏺ *Auto-Recording:* ${config.AUTO_RECORDING}\n` +
             `┃\n` +
             `┣ 🔗 *Our Channels:*\n` +
-            `┃     📱 WhatsAPps n` +
-            `┃     📨 T\n` +
+            `┃     📱 WhatsApp: https://whatsapp.com/channel/0029VbBnQJYJJhzOvWQDwC0u\n` +
             `┃\n` +
-            `┗━━━━━━━【 🅻🅾🅺🆄 🆁🅸🅺🅾 🅼🅸🅽🅸 🅱🅾🆃 🆅2 】━━━━━━◉`
+            `┗━━━━━━━【𝐏ᴏᴡᴇʀᴅ 𝐁ʏ 𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ】━━━━━━◉`
     });
     break;
             case 'fc': {
     if (args.length === 0) {
         return await socket.sendMessage(sender, {
-            text: '❗ Please provide a channel JID.\n\nExample:\n.fcn 120363401755639074@newsletter'
+            text: '❗ Please provide a channel JID.\n\nExample:\n.fcn 120363402466616623@newsletter'
         });
     }
 
@@ -949,6 +948,210 @@ switch (command) {
     });
     break;
         }
+         case 'allmenu': {
+    await socket.sendMessage(sender, { react: { text: '🇱🇰', key: msg.key } });
+
+    const startTime = socketCreationTime.get(number) || Date.now();
+    const uptime = Math.floor((Date.now() - startTime) / 1000);
+    const hours = Math.floor(uptime / 3600);
+    const minutes = Math.floor((uptime % 3600) / 60);
+    const seconds = Math.floor(uptime % 60);
+
+    const caption = 
+`*╭╌╌╌╌◯*
+*╎* \` 🐼 𝑯𝑬𝑳𝑳𝑶 𝑼𝑺𝑬𝑹 🐼ㅤㅤ\`
+*╎🇦🇱⭓ BOT :* ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴍɪɴɪ ᴠ2 ⚡
+*╎🇦🇱⭓ TYPE :* ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ
+*╎🇦🇱⭓ PLATFORM :* ʜᴇʀᴏᴋᴜ
+*╎🇦🇱⭓ STATUS :* ᴏɴʟɪɴᴇ 💫
+*╎🇦🇱⭓ UPTIME :* ${hours}h ${minutes}m ${seconds}s
+*╰╌┬╌╌◯*
+*╭╌┴╌╌◯*
+*╎* \` 🐼 𝑩𝑶𝑻 𝑴𝑬𝑵𝑼 🐼ㅤㅤ\`
+*╰━━━━━━━━━━━━━━━━━╯
+
+┏━━━━━━━━━━━━━━━━━┓
+┃ *🎵 DOWNLOAD MENU*
+┣━━━━━━━━━━━━━━━━━┫
+┃ 💗✦ ${config.PREFIX}song <name>
+┃    └─ Download mp3
+┃
+┃ 💗✦ ${config.PREFIX}tiktok <url>
+┃    └─ TikTok no watermark
+┃
+┃ 💗✦ ${config.PREFIX}ts
+┃    └─ TikTok no found
+┃
+┃ 💗✦ ${config.PREFIX}fb <url>
+┃    └─ Facebook video
+┃   
+┃ 💗✦ ${config.PREFIX}ig <url>
+┃    └─ instagram video
+┃
+┃ 💗✦ ${config.PREFIX}play
+┃    └─ Get Song Youtube
+┃
+┗━━━━━━━━━━━━━━━━━┛
+
+┏━━━━━━━━━━━━━━━━━┓
+┃ *👥 GROUP MENU*
+┣━━━━━━━━━━━━━━━━━┫
+┃ 💗✦ ${config.PREFIX}kick @user
+┃    └─ Remove member
+┃
+┃ 💗✦ ${config.PREFIX}add 94XXX
+┃    └─ Add member
+┃
+┃ 💗✦ ${config.PREFIX}promote @user
+┃    └─ Make admin
+┃
+┃ 💗✦ ${config.PREFIX}demote @user
+┃    └─ Remove admin
+┃
+┃ 💗✦ ${config.PREFIX}mute / unmute
+┃    └─ Group open/close
+┃
+┃ 💗✦ ${config.PREFIX}tagall <msg>
+┃    └─ Tag all members
+┃
+┃ 💗✦ ${config.PREFIX}hidetag <msg>
+┃    └─ Hidden tag
+┃
+┃ 💗✦ ${config.PREFIX}groupinfo
+┃    └─ Group details
+┃
+┃ 💗✦ ${config.PREFIX}getdp
+┃    └─ Get group display picture
+┃
+┃ 💗✦ ${config.PREFIX}uinfo
+┃    └─ Get user info
+┃
+┃ 💗✦ ${config.PREFIX}left <text>
+┃    └─ Left Group
+┃
+┃ 💗✦ ${config.PREFIX}setname/setdec
+┃    └─ Group
+┗━━━━━━━━━━━━━━━━━┛
+
+┏━━━━━━━━━━━━━━━━━┓
+┃ *✨ OWNER MENU*
+┣━━━━━━━━━━━━━━━━━┫
+┃ 💗✦ ${config.PREFIX}vv
+┃    └─ Unlock oneview
+┃
+┃ 💗✦ ${config.PREFIX}spam 
+┃    └─ Spam number
+┃
+┃ 💗✦ ${config.PREFIX}getdp
+┃    └─ Save Dp
+┃
+┃ 💗✦ ${config.PREFIX}uinfo
+┃    └─ get info numbrr
+┃
+┃ 💗✦ ${config.PREFIX}getabout
+┃    └─ Get user about
+┃
+┃ 💗✦ ${config.PREFIX}dev
+┃    └─ Info Owner
+┃
+┃ 💗✦ ${config.PREFIX}owner
+┃    └─ Contact Owner
+┃
+┃ 💗✦ ${config.PREFIX}hidetag <msg>
+┃    └─ Hidden tag
+┃
+┃ 💗✦ ${config.PREFIX}groupinfo
+┃    └─ Group details
+┃
+┃ 💗✦ ${config.PREFIX}getdp
+┃    └─ Get group display picture
+┃
+┃ 💗✦ ${config.PREFIX}alldp
+┃    └─ get group member all dp
+┃
+┃ 💗✦ ${config.PREFIX}uinfo
+┃    └─ Get user info
+┃
+┃ 💗✦ ${config.PREFIX}spam <text>
+┃    └─ Spam message
+│
+┃ 💗✦ ${config.PREFIX}send
+┃    └─ save statuse
+│
+┃ 💗✦ ${config.PREFIX}tourl
+┃    └─ Get url
+┗━━━━━━━━━━━━━━━━━┛
+
+┏━━━━━━━━━━━━━━━━━┓
+┃ *🌸 LOGO MENU*
+┣━━━━━━━━━━━━━━━━━┫
+┃ 💗✦ ${config.PREFIX}3dcomic <text>
+┃    └─ 3D Comic Text Style
+┃
+┃ 💗✦ ${config.PREFIX}blackpink <text>
+┃    └─ Pink Aesthetic Font
+┃
+┃ 💗✦ ${config.PREFIX}neonlight <text>
+┃    └─ Bright Neon Glow Effect
+┃
+┃ 💗✦ ${config.PREFIX}naruto <text>
+┃    └─ Anime Inspired Logo
+┃
+┃ 💗✦ ${config.PREFIX}hacker <text>
+┃    └─ Matrix Digital Style
+┃
+┗━━━━━━━━━━━━━━━━━┛
+
+┏━━━━━━━━━━━━━━━━━┓
+┃ *🧠 AI & INFO MENU*
+┣━━━━━━━━━━━━━━━━━┫
+┃ 💗✦ ${config.PREFIX}gf <Talk With Saduni>
+┃    └─ Use AI
+┃
+┃ 💗✦ ${config.PREFIX}bro <Talk With Neno>
+┃    └─ Use AI
+┃
+┃ 💗✦ ${config.PREFIX}dev
+┃    └─ Show bot info
+┃
+┃ 💗✦ ${config.PREFIX}ping
+┃    └─ Check speed
+┃
+┃ 💗✦ ${config.PREFIX}system
+┃    └─ Show CPU & memory
+┗━━━━━━━━━━━━━━━━━┛
+
+> ᴄᴏɴᴇᴄᴛ ʙᴏᴛ ʏᴏᴜʀ ɴᴜᴍʙᴇʀ ᴜꜱᴇ .ᴘᴀɪʀ <ɴᴜᴍʙᴇʀ>
+> ᴏɴᴇ ᴠɪᴇᴡ ɪᴍᴀɢᴇ ɢᴇᴛ ɪɴʙᴏx ᴜꜱᴇ .ɴɪᴄᴇ ᴄᴏᴍᴍɴᴅ
+
+*𖹭 deploy .ᐟ _ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2 ᴏᴡɴᴇʀꜱ/_*
+╰──────────────────────────────╯`;
+
+    const footer = `*© 2025 ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2 ⚙️*\n${config.BOT_FOOTER}`;
+
+    await socket.sendMessage(sender, {
+        image: { url: 'https://iili.io/fxRzRXs.md.png' },
+        caption: caption,
+        contextInfo: {
+            forwardingScore: 1000,
+            isForwarded: true,
+            forwardedNewsletterMessageInfo: {
+                newsletterJid: '120363401225837204@newsletter',
+                newsletterName: 'ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2',
+                serverMessageId: 1
+            }
+        },
+        buttons: [
+            { buttonId: `${config.PREFIX}dev`, buttonText: { displayText: '💤 ʙᴏᴛ ɪɴꜰᴏ' }, type: 1 },
+            { buttonId: `${config.PREFIX}alive`, buttonText: { displayText: '💫 ᴛᴇꜱᴛ ʙᴏᴛ ᴀʟɪᴠᴇ' }, type: 1 },
+            { buttonId: `${config.PREFIX}donate`, buttonText: { displayText: '✨ ᴅᴏɴᴀᴛᴇ ʙᴏᴛ ᴏᴡɴᴇʀꜱ' }, type: 1 }            
+        ],
+        headerType: 4
+    }, { quoted: msg });
+
+    await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
+    break;
+            }
 
 switch (command) {
          
