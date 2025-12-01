@@ -865,7 +865,7 @@ switch (command) {
 
     await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
-    }
+    
 
 //========================================================//        
    module.exports = {
