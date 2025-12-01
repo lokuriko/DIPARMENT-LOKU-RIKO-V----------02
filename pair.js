@@ -661,8 +661,12 @@ const caption = formatMessage(
     await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
         }
+if (!command) return;
 
-                case 'riko': {
+        try {
+            switch (command) {
+            
+case 'riko': {
   try {
     const desc = `
 ABOUT ME – CYBAR LOKU RIKO
