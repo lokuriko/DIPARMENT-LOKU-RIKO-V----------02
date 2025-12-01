@@ -548,7 +548,8 @@ const caption = formatMessage(
                 newsletterName: '🧚‍♂️𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ🧚‍♂️',
                 serverMessageId: 143
             }
-       case 'menu':
+            switch (command) {
+            case 'menu':
     await socket.sendMessage(sender, {
         image: '{ https://iili.io/fxRzRXs.md.png }',
         caption: formatMessage(
