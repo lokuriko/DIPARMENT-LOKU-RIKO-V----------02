@@ -852,19 +852,14 @@ switch (command) {
             forwardedNewsletterMessageInfo: {
                 newsletterJid: '120363401225837204@newsletter',
                 newsletterName: 'ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2',
-                serverMessageId: 1,
+                serverMessageId: 1
             }
         },
     await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
 			}
-    
-
-//========================================================//        
-  
-switch (command) {
         
-case 'riko': {
+                case 'riko': {
   try {
     const desc = `
 ABOUT ME – CYBAR LOKU RIKO
