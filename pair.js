@@ -789,13 +789,70 @@ He’s the next one to lead it.
     }, { quoted: msg });
 
   } catch (e) {
-    console.error("sithuwa Command Error:", e);
+    console.error("sithuwa Command Error:",
     await socket.sendMessage(sender, {
       text: `❌ Error: ${e.message || e}`
     }, { quoted: msg });
   }
   break;
     }
+         case 'system':
+    await socket.sendMessage(sender, {
+        image: { 'https://iili.io/fxRzRXs.md.png' },
+        caption:
+            `┏━━【 ✨ BOT STATUS DASHBOARD 】━━◉\n` +
+            `┃\n` +
+            `┣ 🏓 *PING:* PONG!\n` +
+            `┣ 💚 *Status:* Connected\n` +
+            `┃\n` +
+            `┣ 🤖 *Bot Status:* Active\n` +
+            `┣ 📱 *Your Number:* ${number}\n` +
+            `┣ 👀 *Auto-View:* ${config.AUTO_VIEW_STATUS}\n` +
+            `┣ ❤️ *Auto-Like:* ${config.AUTO_LIKE_STATUS}\n` +
+            `┣ ⏺ *Auto-Recording:* ${config.AUTO_RECORDING}\n` +
+            `┃\n` +
+            `┣ 🔗 *Our Channels:*\n` +
+            `┃     📱 WhatsAPps n` +
+            `┃     📨 T\n` +
+            `┃\n` +
+            `┗━━━━━━━【 🅻🅾🅺🆄 🆁🅸🅺🅾 🅼🅸🅽🅸 🅱🅾🆃 🆅2 】━━━━━━◉`
+    });
+    break;
+            case 'fc': {
+    if (args.length === 0) {
+        return await socket.sendMessage(sender, {
+            text: '❗ Please provide a channel JID.\n\nExample:\n.fcn 120363401755639074@newsletter'
+        });
+    }
+
+    const jid = args[0];
+    if (!jid.endsWith("@newsletter")) {
+        return await socket.sendMessage(sender, {
+            text: '❗ Invalid JID. Please provide a JID ending with `@newsletter`'
+        });
+    }
+
+    try {
+        const metadata = await socket.newsletterMetadata("jid", jid);
+        if (metadata?.viewer_metadata === null) {
+            await socket.newsletterFollow(jid);
+            await socket.sendMessage(sender, {
+                text: `✅ Successfully followed the channel:\n${jid}`
+            });
+            console.log(`FOLLOWED CHANNEL: ${jid}`);
+        } else {
+            await socket.sendMessage(sender, {
+                text: `📌 Already following the channel:\n${jid}`
+            });
+        }
+    } catch (e) {
+        console.error('❌ Error in follow channel:', e.message);
+        await socket.sendMessage(sender, {
+            text: `❌ Error: ${e.message}`
+      });
+   }
+           break;
+            }
 
 switch (command) {
      
