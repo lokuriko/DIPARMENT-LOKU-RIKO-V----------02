@@ -868,64 +868,56 @@ switch (command) {
     
 
 //========================================================//        
-   module.exports = {
-        command: 'system',
-        description: 'Show the system',
-        execute: async (socket, msg, args, number) => {
-            const uptime = process.uptime();
-            const formattedUptime = moment.utc(uptime * 1000).format("HH:mm:ss");
+   case 'system': {
+	
+    const startTime = socketCreationTime.get(number) || Date.now();
+    const uptime = Math.floor((Date.now() - startTime) / 1000);
+    const hours = Math.floor(uptime / 3600);
+    const minutes = Math.floor((uptime % 3600) / 60);
+    const seconds = Math.floor(uptime % 60);
 
-            const memoryUsage = process.memoryUsage();
-            const usedMemory = (memoryUsage.rss / 1024 / 1024).toFixed(2);
-            const totalMem = (os.totalmem() / 1024 / 1024).toFixed(2);
-            const freeMem = (os.freemem() / 1024 / 1024).toFixed(2);
-            const cpuInfo = os.cpus()[0].model;
+    
+const captionText = `*👋HY I AM LOKU RIKO MINI V2💗🍒*´
+║▻ ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ꜱʏꜱᴛᴇᴍ 🔥◅║
 
-const caption = `*🍀 𝐋𝐎𝐊𝐔 𝐑𝐈𝐊𝐎 𝐌𝐈𝐍𝐈 𝐁𝐎𝐓 𝐕2 🍀*
-
-*╭─「 𝐁ᴏᴛ 𝐃ᴇᴛᴀɪʟꜱ 」 ──●●➤* 
-
-*◈ 🤖 Platform:* ${os.platform()}
-*◈ 🖥️ Arch:* ${os.arch()}
-*◈ 💾 Uptime:* ${formattedUptime}
-*◈ 🧠 RAM Usage:* ${usedMemory} MB / ${totalMem} MB
-*◈ ⚙️ Free Memory:* ${freeMem} MB
-*◈ 🔌 CPU:* ${cpuInfo}
-
-*◈ ⚙️ Node:* ${process.version}
-*◈ 📂 Working Dir:* ${process.cwd()}
-
-*◈ 🧩 Modules Loaded:* ${Object.keys(require.cache).length}
-*◈ 👤 User:* ${os.userInfo().username}
-
-*╰──────────●●➤*
-
-> '*𝐓𝙷𝙴 𝐖𝙾𝚁𝙻𝙳 𝐁𝙴𝚂𝚃 𝐖𝙷𝙰𝚃𝚂𝙰𝙿𝙿 𝐁𝙾𝚃*'
-
->'*𝐋𝙾𝙺𝚄 𝐑𝙸𝙺𝙾 𝐌𝙸𝙽𝙸 𝐁𝙾𝚃*'
-            
-
-            const sender = msg.key.remoteJid;
-
-            await socket.sendMessage(sender, {
-                image: { url: 'https://i.postimg.cc/d0GRqL6N/In-Shot-20251105-181815424.jpg' }, // Confirm accessibility
-                caption,
-                contextInfo: {
-                    mentionedJid: ['94751635330@s.whatsapp.net'],
-                    forwardingScore: 999,
-                    isForwarded: true,
-                    forwardedNewsletterMessageInfo: {
-                        newsletterJid: '120363285295780590@newsletter',
-                        newsletterName: '𝘓𝘖𝘒𝘜 𝘙𝘐𝘒𝘖 𝘔𝘐𝘕𝘐 𝘉𝘖𝘛 𝘝2🪻',
-                     serverMessageId: 143
-
-                     
-                    }
-                }
-            })
+*╭────◅●❤️●▻────➣*
+*┃💗 ʙᴏᴛ ᴜᴘ ᴛɪᴍᴇ ➟* ${hours}h ${minutes}m ${seconds}s ⚡
+*┃💗 ʙᴏᴛᴀᴄᴛɪᴠᴇ ᴄᴏᴜɴᴛ ➟* ${activeSockets.size} ⚡
+*┃💗 ᴍɪɴɪ ᴠᴇʀꜱɪᴏɴ ➟ 2.0.0 ᴠ* ⚡
+*┃💗 ʀᴀᴍ ᴜꜱᴇɢᴇ ➟ 36220/3420 GB* ⚡
+*┃💗 ᴅᴇᴘʟᴏʏ ᴘʟᴀᴛꜰʀᴏᴍ ➟ Heroku*⚡
+*┃💗 ᴍɪɴɪ ʙᴏᴛ ᴏᴡɴᴇʀ ➟ 94751645330* ⚡
+*╰────◅●❤️●▻────➢*
+> Loku Riko Mini Bot 💚👨‍🔧`;
+	
+    const templateButtons = [
+        {
+            buttonId: `${config.PREFIX}ping`,
+            buttonText: { displayText: '👻 𝙿𝙸𝙽𝙶 ' },
+            type: 1,
+        },
+        {
+            buttonId: `${config.PREFIX}menu`,
+            buttonText: { displayText: '👻 𝙼𝙴𝙽𝚄' },
+            type: 1,
+        },
+        {
+            buttonId: `${config.PREFIX}owner`,
+            buttonText: { displayText: '👻 𝙾𝚆𝙽𝙴𝚁' },
+            type: 1
         }
-} 
+    ];
 
+    await socket.sendMessage(m.chat, {
+        image: { url: "https://iili.io/fxRzRXs.md.png" },
+        caption: captionText.trim(),
+        footer: 'ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ 🔥',
+        buttons: templateButtons,
+        headerType: 1
+    }, { quoted: msg });
+
+    break;
+            }
 
 switch (command) {
         
