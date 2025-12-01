@@ -854,7 +854,6 @@ switch (command) {
                 newsletterName: 'ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2',
                 serverMessageId: 1
             }
-        },
     await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
 			}
