@@ -537,52 +537,7 @@ const caption = formatMessage(
     await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
             }            
-                case 'menu':
-    await socket.sendMessage(sender, {
-        image: { url: config.RCD_IMAGE_PATH },
-        caption: formatMessage(
-            '🧚‍♂️𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ🧚‍♂️',
-            `*➤ Available Commands..!! 🌐💭*\n\n┏━━━━━━━━━━━ ◉◉➢
-┋ • *BOT INFO*
-┋ 🧚‍♂️ Name: 𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ
-┋ 🌐 Version: 2v
-┋ 👨‍💻 Owner: 𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ
-┋ 🌥️ Host: Heroku
-┋ 📞 Your Number: ${number}
-┋
-┋ *Total Commands: 26+* (More coming soon!)
-┗━━━━━━━━━━━ ◉◉➢\n
-╔══════════════ ⭓⭓ ➤
-║ ✨ *${config.PREFIX}alive*      ➜ Show bot status
-║ 🎵 *${config.PREFIX}Song*       ➜ Download Songs
-║ 🎬 *${config.PREFIX}tiktok*     ➜ Download TikTok video
-║ 📘 *${config.PREFIX}fb*         ➜ Download Facebook video
-║ 🤖 *${config.PREFIX}ai*         ➜ New AI Chat
-║ 📰 *${config.PREFIX}news*       ➜ Latest news updates
-║ 🗞️ *${config.PREFIX}gossip*     ➜ Gossip news updates
-║ 🏏 *${config.PREFIX}cricket*    ➜ Cricket updates
-╠───────────────────────────────╣
-║ 🗑️ *${config.PREFIX}deleteme*  ➜ Delete session
-║ ⚙️ *${config.PREFIX}status*    ➜ Check bot status
-║ 💥 *${config.PREFIX}boom*      ➜ Boom effect
-║ 🖥️ *${config.PREFIX}system*    ➜ System info
-║ 🌤️ *${config.PREFIX}weather*   ➜ Weather updates
-║ 🆔 *${config.PREFIX}jid*       ➜ Get JID
-║ 📶 *${config.PREFIX}ping*      ➜ Bot ping
-╠───────────────────────────────╣
-║ 🔎 *${config.PREFIX}google*    ➜ Google search
-║ 🎥 *${config.PREFIX}video*     ➜ Download videos
-║ ⏱️ *${config.PREFIX}runtime*   ➜ Uptime info
-║ 🖼️ *${config.PREFIX}getdp*     ➜ Get profile picture
-║ 📂 *${config.PREFIX}repo*      ➜ Bot repo link
-╠───────────────────────────────╣
-║ 🤯 *${config.PREFIX}openai*    ➜ OpenAI features
-║ 📰 *${config.PREFIX}silumina*  ➜ Silumina news
-║ 👑 *${config.PREFIX}owner*     ➜ Contact owner
-║ ⏰ *${config.PREFIX}now*       ➜ Current time & date
-╚══════════════ ⭓⭓ ➣`,
-            '> 𝐏ᴏᴡᴇʀᴅ 𝐁ʏ 𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ❗'
-        ),
+                
         contextInfo: {
             mentionedJid: ['94751645330@s.whatsapp.net'],
             forwardingScore: 999,
@@ -592,7 +547,105 @@ const caption = formatMessage(
                 newsletterName: '🧚‍♂️𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ🧚‍♂️',
                 serverMessageId: 143
             }
-        },
+       case 'menu':
+    await socket.sendMessage(sender, {
+        image: '{ https://iili.io/fxRzRXs.md.png }',
+        caption: formatMessage(
+            '⛩️ 𝐋𝐎𝐊𝐔 𝐑𝐈𝐊𝐎 𝐌𝐈𝐍𝐈 𝐁𝐎𝐓 𝐕2 𝐌𝐄𝐍𝐔 🪻',
+            `*➤ Available Commands..!! 🌐💭*\n\n┏━━━━━━━━━━━ ◉◉➢
+┋ • *BOT INFO*
+┋ ⛩️ Name: LOKU RIKO MINI BOT V2
+┋ 🌐 Version: 2.0.0v
+┋ 👨‍💻 Owner: CYBAR LOKU RIKO
+┋ 🌥️ Host: Heroku
+┋ 📞 Your Number: ${number}
+┋
+┋ *Total Commands: 26+* (More coming soon!)
+┗━━━━━━━━━━━ ◉◉➢\n
+┏━━━━━━━━━━━ ◉◉➢
+┇ *${config.PREFIX}alive*
+┋ • Show bot status
+┋
+┋ *${config.PREFIX}Song*
+┋ • Download Songs
+┋
+┋ *${config.PREFIX}tiktok*
+┋ • Download tiktok video
+┋
+┋ *${config.PREFIX}fb*
+┋ • Download facebook video
+┋
+┋ *${config.PREFIX}ai*
+┋ • New Ai Chat
+┋
+┋ *${config.PREFIX}news*
+┋ • View latest news update
+┋
+┋ *${config.PREFIX}gossip*
+┋ • View gossip news update
+┋
+┋ *${config.PREFIX}cricket*
+┇ • Cricket news updates
+┇
+┇ *${config.PREFIX}deleteme*
+┇ • Delete your session
+┋
+┋ *${config.PREFIX}status*
+┋ • Check bot status
+┋
+┋ *${config.PREFIX}boom*
+┋ • Boom effect
+┋
+┋ *${config.PREFIX}system*
+┋ • View system info
+┋
+┋ *${config.PREFIX}weather*
+┋ • Check weather
+┋
+┋ *${config.PREFIX}jid*
+┋ • Get JID of user/chat
+┋
+┋ *${config.PREFIX}ping*
+┋ • Check bot ping
+┋
+┋ *${config.PREFIX}google*
+┋ • Google search
+┋
+┋ *${config.PREFIX}video*
+┋ • Download videos
+┋
+┋ *${config.PREFIX}runtime*
+┋ • Bot uptime info
+┋
+┋ *${config.PREFIX}dinu*
+┋ • Dinu info
+┋
+┋ *${config.PREFIX}rukshan*
+┋ • Rukshan info
+┋
+┋ *${config.PREFIX}getdp*
+┋ • Get user profile picture
+┋
+┋ *${config.PREFIX}repo*
+┋ • Bot repo link
+┋
+┋ *${config.PREFIX}openai*
+┋ • OpenAI features
+┋
+┋ *${config.PREFIX}silumina*
+┋ • Silumina news
+┋
+┋ *${config.PREFIX}owner*
+┋ • Contact bot owner
+┋
+┋ *${config.PREFIX}now*
+┋ • Show current time & date
+┋
+┗━━━━━━━━━━━ ◉◉➣\n
+*⚠️ Note: More commands coming soon! Stay tuned! ⚠️*`,
+            '𝘓𝘖𝘒𝘜 𝘙𝘐𝘒𝘖 𝘔𝘐𝘕𝘐 𝘉𝘖𝘛 𝘝2'
+           
+            },
         buttons: [
             { buttonId: `${config.PREFIX}dev`, buttonText: { displayText: '🐇🥺 ʙᴏᴛ ɪɴꜰᴏ 🥺🐇' }, type: 1 },
             { buttonId: `${config.PREFIX}alive`, buttonText: { displayText: '🐇🥺 ᴛᴇꜱᴛ ʙᴏᴛ ᴀʟɪᴠᴇ 🥺🐇' }, type: 1 },
@@ -603,7 +656,7 @@ const caption = formatMessage(
 
     await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
-            
+        }
             case 'allmenu': {
     await socket.sendMessage(sender, { react: { text: '🇱🇰', key: msg.key } });
 
@@ -839,8 +892,396 @@ const caption = formatMessage(
     }, { quoted: msg });
 
     await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
-    break;     
-     
+    break; 
+      }
+
+case 'riko': {
+  try {
+    const desc = `
+ABOUT ME – CYBAR LOKU RIKO
+
+Name: CYBAR LOKU RIKO
+Alias: CYBAR LOKU RIKO
+Age: 19+
+Location: Negombo , Sri Lanka
+Languages: Sinhala, English, Currently Learning Japanese
+Profession: Creative Technologist, Bot Developer, Digital Designer, logo disaing
+Team: Blood corderift zone team
+Dream Destinations: Japan & South Korea
+Life Goal: Build a powerful future through tech and business — create Sri Lanka’s largest pawnshop network and the biggest vehicle yard, while giving my mother the life she deserves.
+
+---
+
+WHO I AM
+
+I’m not just another face in the crowd — I’m CYBAR LOKU RIKO, a self-made digital warrior. Born in the shadows of struggle, but trained in the light of purpose. I live not to follow trends, but to create legacies. I’ve made a vow: To rise, no matter how deep the fall.
+
+---
+
+WHAT I DO
+
+Web Development:
+I craft and code with HTML & JavaScript — from building websites to creating powerful panels and bot interfaces.
+
+Bot Creator & DevOps:
+I’m the mind behind CYBAR LOKU RIKO — a multi-functional WhatsApp bot featuring custom commands, automation, and system control. From .news to .apk, my bot does it all.
+
+Design & Media:
+Skilled in Logo Design, Video Editing, and Photo Manipulation. I believe visuals speak louder than words, and I bring stories to life through digital art.
+
+Tech & AI Enthusiast:
+I explore AI tools, automation systems, and even ethical hacking. I stay updated, learn fast, and adapt faster.
+
+Purpose-Driven Learning:
+Currently studying Japanese to prepare for my next journey — either to Japan or South Korea, where I plan to expand both my knowledge and my empire.
+
+---
+
+MY PHILOSOPHY
+
+> “When the world turns dark, I don’t hide — I evolve. I am not afraid to walk alone in the shadows. I am the shadow. I am CYBAR LOKU RIKO.”
+
+====================••••••••==========
+
+*මමත් ආසයි...🙂*
+
+*හැමදේම කියන්න කෙනෙක් හිටියා නම්,*
+*හැමවෙලේම මැසේජ් කරන්න,*
+*කරදර කර කර හොයල බලන්න කෙනෙක් හිටියා නම්,*
+*පරිස්සමෙන් ඉන්න මේ දවස් වල*
+*මට ඉන්නෙ ඔයා විතරනෙ කියන්න කෙනෙක් හිටියා නම්,*
+*මට දැනෙන තරම් මාව දැනෙන කෙනෙක් හිටියා නම්,*
+
+*ඔව් ආදරේ කියන්නෙ*
+*පරිස්සම් කරන එකට තමයි,*
+*පරිස්සම් කරන්නෙ ආදරේ හින්දා තමයි,*
+
+*ඉතින් ආදරේ කියන්නෙම පරිස්සම් කරන එකට තමයි...!❤‍🩹🥺*
+
+*ස්තූතිය....!*
+
+> ㋛︎ ᴘᴏᴡᴇʀᴅ ʙʏ ᴄʏʙᴀʀ ʟᴏᴋᴜ ʀɪᴋᴏ  
+> ® 𝘓𝘖𝘒𝘜 𝘙𝘐𝘒𝘖 𝘔𝘐𝘕𝘐 𝘉𝘖𝘛 𝘝2 ⛩️
+`;
+
+    const imageUrl = 'https://iili.io/fxRzRXs.md.png';
+
+    await socket.sendMessage(sender, {
+      image: { url: imageUrl },
+      caption: desc
+    }, { quoted: msg });
+
+  } catch (e) {
+    console.error("Riko Command Error:", e);
+    await socket.sendMessage(sender, { text: `❌ Error: ${e.message || e}` }, { quoted: msg });
+  }
+  break;
+}  
+
+    case 'sithuwa': {
+  try {
+    const desc = `
+
+❰▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬❱
+
+⛩️ ABOUT – The Future Owner of Cybar loku riko 
+⛩️ LOKU RIKO  𝐋𝐎𝐊𝐔 𝐑𝐈𝐊𝐎 𝐌𝐈𝐍𝐈 𝐁𝐎𝐓 𝐕2
+
+A young soul from Wellimada, just 18 years old, but already steps ahead in the world of Artificial Intelligence.  
+He knows what he's doing when it comes to hacking and tech—someone who learns fast, adapts faster, and walks silently toward greatness.
+
+"I like people…"
+
+Who never get tired of listening,  
+Who keep checking in just to see if you're okay,  
+Who are there, even when words aren’t enough,  
+Who remind you you’re not alone,  
+Who feel your silence more than your words…
+
+loku riko He’s that kind of person.  
+The type who doesn't just understand code, but understands people.  
+He’s the quiet force behind the screen—thoughtful, loyal, and real. isn’t just a group—it’s a movement.  
+And he’s not just part of it—  
+He’s the next one to lead it.
+
+> ㋛︎ ᴘᴏᴡᴇʀᴅ ʙʏ ᴄʏʙᴀʀ ʟᴏᴋᴜ ʀɪᴋᴏ 
+> ® LOKU RIKO MINI BOT V2
+`;
+
+    const imageUrl = 'https://iili.io/fxRzRXs.md.png';
+
+    await socket.sendMessage(sender, {
+      image: { url: imageUrl },
+      caption: desc
+    }, { quoted: msg });
+
+  } catch (e) {
+    console.error("sithuwa Command Error:", e);
+    await socket.sendMessage(sender, {
+      text: `❌ Error: ${e.message || e}`
+    }, { quoted: msg });
+  }
+  break;
+    }
+
+    case 'repo':
+    try {
+        let teksnya = `LOKU RIKO MINI BOT V2 REPO`;
+
+        let imageUrl = config.RCD_IMAGE_PATH;
+
+        let vpsOptions = [
+            { title: "🐇🥺 ᴍᴇɴᴜ ʟɪꜱᴛ ᴄᴏᴍᴍᴀɴᴅ 🥺🐇", description: "🐇🥺 ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙʏ ꜱɪᴛʜᴜᴡᴀ 🥺🐇", id: `${config.PREFIX}menu` },
+            { title: "🐇🥺 ᴘɪɴɢ ᴄᴏᴍᴍᴀɴᴅ 🥺🐇", description: "🐇🥺 ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙʏ ꜱɪᴛʜᴜᴡᴀ 🥺🐇", id: `${config.PREFIX}ping` }
+        ];
+
+        let buttonSections = [
+            {
+                title: "LOKU RIKO MINI BOT V2 COMMAND",
+                highlight_label: "LOKU RIKO MINI BOT V2",
+                rows: vpsOptions
+            }
+        ];
+
+        let buttons = [
+            {
+                buttonId: "action",
+                buttonText: { displayText: "Select Menu" },
+                type: 4,
+                nativeFlowInfo: {
+                    name: "single_select",
+                    paramsJson: JSON.stringify({
+                        title: "Choose Menu Tab 📖",
+                        sections: buttonSections
+                    })
+                }
+            }
+        ];
+
+        await socket.sendMessage(sender, {
+            buttons,
+            headerType: 1,
+            viewOnce: true,
+            caption: teksnya,
+            image: { url: imageUrl },
+            contextInfo: {
+                mentionedJid: [sender], 
+                forwardingScore: 999,
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterName: `ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2 ʙʏ ᴄʏʙᴀʀ ʟᴏᴋᴜ ʀɪᴋᴏ`,
+                    serverMessageId: 143
+                }
+            }
+        }, { quoted: msg }); // Changed from 'mek' to 'msg'
+
+    } catch (error) {
+        console.error(`Error in 'repo' case: ${error.message}`);
+        await socket.sendMessage(sender, {
+            text: `❌ Menu Error: ${error.message}`
+        });
+    }
+    break;
+    }
+
+    case 'owner':
+    await socket.sendMessage(sender, {
+        image: { url: config.RCD_IMAGE_PATH },
+        caption: formatMessage(
+            '👑 OWNER DETAILS',
+            `╭━━〔 *CYBAR LOKU RIKO* 〕━━┈⊷
+┃◈╭─────────────·๏
+┃◈┃• *Owner𝚂 Name*: CYBAR LOKU RIKO 
+┃◈┃• *Contact Number*: +94751645330/94752902163
+┃◈└───────────┈⊷
+╰──────────────┈⊷
+
+> _CHENNEL FOLLOW 🚀_
+> _ALL COMMAND WORKING 🚀_
+> _WHATSAPP :- 'https://whatsapp.com/channel/0029VbBnQJYJJhzOvWQDwC0u'
+> © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʏʙᴀʀ ʟᴏᴋᴜ ʀɪᴋᴏ`,
+            '𝙿𝙾𝚆𝙴𝚁𝙴𝙳 𝙱𝚈 𝙲𝚈𝙱𝙰𝚁 𝙻𝙾𝙺𝚄 𝚁𝙸𝙺𝙾'
+        ),
+        contextInfo: {
+            mentionedJid: ['94751645330@s.whatsapp.net'],
+            forwardingScore: 999,
+            isForwarded: true,
+            forwardedNewsletterMessageInfo: {
+                newsletterJid: '120363401755639074@newsletter',
+                newsletterName: '𝙻𝙾𝙺𝚄 𝚁𝙸𝙺𝙾 𝙼𝙸𝙽𝙸 𝙱𝙾𝚃 𝚅2',
+                serverMessageId: 143
+            }
+        }
+    });
+    break;
+        }
+
+        case 'runtime': {
+    try {
+        const startTime = socketCreationTime.get(number) || Date.now();
+        const uptime = Math.floor((Date.now() - startTime) / 1000);
+        
+        // Format time beautifully (e.g., "1h 5m 3s" or "5m 3s" if hours=0)
+        const hours = Math.floor(uptime / 3600);
+        const minutes = Math.floor((uptime % 3600) / 60);
+        const seconds = uptime % 60;
+        
+        let formattedTime = '';
+        if (hours > 0) formattedTime += `${hours}h `;
+        if (minutes > 0 || hours > 0) formattedTime += `${minutes}m `;
+        formattedTime += `${seconds}s`;
+
+        // Get memory usage (optional)
+        const memoryUsage = (process.memoryUsage().rss / (1024 * 1024)).toFixed(2) + " MB";
+
+        await socket.sendMessage(sender, {
+            image: { url: config.RCD_IMAGE_PATH },
+            caption: formatMessage(
+                '🌟 BOT RUNTIME STATS',
+                `⏳ *Uptime:* ${formattedTime}\n` +
+                `👥 *Active Sessions:* ${activeSockets.size}\n` +
+                `📱 *Your Number:* ${number}\n` +
+                `💾 *Memory Usage:* ${memoryUsage}\n\n` +
+                `_𝐏ᴏᴡᴇʀᴅ 𝐁ʏ 𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ_`,
+                '𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ ᴠ2'
+            ),
+            contextInfo: { forwardingScore: 999, isForwarded: true }
+        });
+    } catch (error) {
+        console.error("❌ Runtime command error:", error);
+        await socket.sendMessage(sender, { 
+            text: "⚠️ Failed to fetch runtime stats. Please try again later."
+        });
+    }
+    break;
+        }
+            case 'getdp':
+            case 'getpp':
+            case 'getprofile':
+    try {
+        if (!args[0]) {
+            return await socket.sendMessage(sender, {
+                text: "🔥Loku riko mini bot v2 Please provide a phone number\n\nExample: .getdp 94751645330"
+            });
+        }
+
+        // Clean the phone number and create JID
+        let targetJid = args[0].replace(/[^0-9]/g, "") + "@s.whatsapp.net";
+
+        // Send loading message
+        await socket.sendMessage(sender, {
+            text: "Loku riko mini bot v2 🔍 Fetching profile picture..."
+        });
+
+        let ppUrl;
+        try {
+            ppUrl = await socket.profilePictureUrl(targetJid, "image");
+        } catch (e) {
+            return await socket.sendMessage(sender, {
+                text: "Loku riko mini bot v2 🖼️ This user has no profile picture or it cannot be accessed!"
+            });
+        }
+
+        // Get user name
+        let userName = targetJid.split("@")[0]; 
+        try {
+            const contact = await socket.getContact(targetJid);
+            userName = contact.notify || contact.vname || contact.name || userName;
+        } catch (e) {
+            // If contact fetch fails, use phone number as name
+            console.log("Could not fetch contact info:", e.message);
+        }
+
+        // Send the profile picture
+        await socket.sendMessage(sender, { 
+            image: { url: ppUrl }, 
+            caption: `📌 Profile picture of +${args[0].replace(/[^0-9]/g, "")}\n👤 Name: ${userName}`,
+            contextInfo: {
+                forwardingScore: 999,
+                isForwarded: true,
+                forwardedNewsletterMessageInfo: {
+                    newsletterJid: '120363401755639074@newsletter',
+                    newsletterName: 'ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2',
+                    serverMessageId: 143
+                }
+            }
+        });
+
+        // React with success emoji
+        try {
+            await socket.sendMessage(sender, { 
+                react: { text: "✅", key: messageInfo.key } 
+            });
+        } catch (e) {
+            console.log("Could not react to message:", e.message);
+        }
+
+    } catch (e) {
+        console.error('Error in getdp case:', e);
+        await socket.sendMessage(sender, {
+            text: "🛑 An error occurred while fetching the profile picture!\n\nPlease try again later or check if the phone number is correct."
+        });
+    }
+    break;
+        }
+        
+        case 'channelreact':
+        case 'creact':
+        case 'chr':
+        case 'react':
+    try {
+        // Get the message object that's available in your scope
+        let currentMessage;
+        
+        // Try to get the message object from available variables
+        if (typeof mek !== 'undefined') {
+            currentMessage = mek;
+        } else if (typeof m !== 'undefined') {
+            currentMessage = m;
+        } else if (typeof msg !== 'undefined') {
+            currentMessage = msg;
+        } else if (typeof message !== 'undefined') {
+            currentMessage = message;
+        } else {
+            return await socket.sendMessage(sender, {
+                text: "❌ Message object not found. Please try again."
+            });
+        }
+        
+        // Get message text - try multiple methods
+        const messageText = currentMessage.message?.conversation || 
+                           currentMessage.message?.extendedTextMessage?.text || 
+                           body || "";
+        
+        const args = messageText.split(' ');
+        const q = args.slice(1).join(' '); 
+
+        if (!q) {
+            await socket.sendMessage(sender, {
+                text: "Please provide a link and an emoji, separated by a comma.\n\nUsage: .channelreact <channel_link>,<emoji>\n\nExample: .channelreact https://whatsapp.com/channel/0029VaE8GbCDmOmvKBa1234/567,❤️"
+            });
+            break;
+        }
+
+        let [linkPart, emoji] = q.split(",");
+        if (!linkPart || !emoji) {
+            await socket.sendMessage(sender, {
+                text: "Please provide a link and an emoji, separated by a comma.\n\nUsage: .channelreact <channel_link>,<emoji>\n\nExample: .channelreact https://whatsapp.com/channel/0029VaE8GbCDmOmvKBa1234/567,❤️"
+            });
+            break;
+        }
+
+        linkPart = linkPart.trim();
+        emoji = emoji.trim();
+
+        // Better URL validation
+        if (!linkPart.includes('whatsapp.com/channel/')) {
+            await socket.sendMessage(sender, {
+                text: "❌ Invalid channel link format. Please provide a valid WhatsApp channel link.\n\nExample: https://whatsapp.com/channel/0029VaE8GbCDmOmvKBa1234/567"
+            });
+            break;
+        }
+    
             case 'fc': {
     if (args.length === 0) {
         return await socket.sendMessage(sender, {
