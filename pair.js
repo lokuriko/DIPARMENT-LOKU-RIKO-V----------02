@@ -24,7 +24,7 @@ const {
 } = require('baileys');
 
 //  URL එකට ඔයාගේ MongoDB connection string එක දාන්න
-const MONGO_URL = "mongodb+srv://<username>:<password>@cluster0.mongodb.net/?retryWrites=true&w=majority"; 
+const MONGO_URL = "mongodb+srv://Riko:Riko2005@cluster0.gt2dyru.mongodb.net/"; 
 const mongoClient = new MongoClient(MONGO_URL);
 let db;
 
