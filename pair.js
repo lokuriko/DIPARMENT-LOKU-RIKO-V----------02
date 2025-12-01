@@ -867,9 +867,7 @@ switch (command) {
     await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
     }
-        
-        
-    case 'system':
+          case 'system':
     await socket.sendMessage(sender, {
         image: { url: config.RCD_IMAGE_PATH },
         caption:
