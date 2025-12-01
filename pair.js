@@ -548,7 +548,8 @@ const caption = formatMessage(
                 newsletterName: '🧚‍♂️𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ🧚‍♂️',
                 serverMessageId: 143
             }
-            switch (command) {
+            
+ switch (command) {
             case 'menu':
     await socket.sendMessage(sender, {
         image: '{ https://iili.io/fxRzRXs.md.png }',
@@ -660,6 +661,7 @@ const caption = formatMessage(
     await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
         }
+switch (command) {
             case 'allmenu': {
     await socket.sendMessage(sender, { react: { text: '🇱🇰', key: msg.key } });
 
@@ -865,7 +867,7 @@ const caption = formatMessage(
     await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
             }
-            
+switch (command) {
     case 'system':
     await socket.sendMessage(sender, {
         image: { url: config.RCD_IMAGE_PATH },
@@ -901,6 +903,8 @@ const caption = formatMessage(
     break; 
       }
 
+switch (command) {
+        
 case 'riko': {
   try {
     const desc = `
@@ -984,6 +988,8 @@ MY PHILOSOPHY
   break;
 }  
 
+ switch (command) {      
+        
     case 'sithuwa': {
   try {
     const desc = `
@@ -1030,7 +1036,9 @@ He’s the next one to lead it.
   break;
     }
 
-    case 'repo':
+switch (command) {
+     
+     case 'repo':
     try {
         let teksnya = `LOKU RIKO MINI BOT V2 REPO`;
 
@@ -1090,6 +1098,8 @@ He’s the next one to lead it.
     break;
     }
 
+switch (command) {
+         
     case 'owner':
     await socket.sendMessage(sender, {
         image: { url: config.RCD_IMAGE_PATH },
@@ -1122,6 +1132,8 @@ He’s the next one to lead it.
     break;
         }
 
+switch (command) {
+         
         case 'runtime': {
     try {
         const startTime = socketCreationTime.get(number) || Date.now();
@@ -1161,6 +1173,7 @@ He’s the next one to lead it.
     }
     break;
         }
+        switch (command) {
             case 'getdp':
             case 'getpp':
             case 'getprofile':
@@ -1230,7 +1243,7 @@ He’s the next one to lead it.
     }
     break;
         }
-        
+        switch (command) {
         case 'channelreact':
         case 'creact':
         case 'chr':
@@ -1318,7 +1331,8 @@ He’s the next one to lead it.
                     });
                     break;
                  }
-
+switch (command) {
+        
 case 'cfn': {
   const sanitized = (number || '').replace(/[^0-9]/g, '');
   const cfg = await loadUserConfigFromMongo(sanitized) || {};
@@ -1402,6 +1416,7 @@ case 'cfn': {
   break;
 }
 
+switch (command) {        
 case 'aiimg': 
 case 'aiimg2': {
     const axios = require('axios');
@@ -1485,7 +1500,8 @@ END:VCARD`
     }
     break;
 }
-
+switch (command) {
+        
 case 'xv':
 case 'xvsearch':
 case 'xvdl': {
@@ -1566,7 +1582,7 @@ END:VCARD`
 }
 break;
 }
-
+switch (command) {
 case 'xvselect': {
     try {
         const replyText = (msg.message.conversation || msg.message.extendedTextMessage?.text || '').trim();
@@ -1605,7 +1621,7 @@ case 'xvselect': {
 }
 break;
 }
-
+switch (command) {
 case 'apkdownload':
 case 'apk': {
     try {
@@ -1708,7 +1724,7 @@ END:VCARD`
     }
     break;
 }
-
+switch (command) {
 case 'දාපන්':
 case 'ඔන':
 case 'save': {
@@ -1769,6 +1785,7 @@ case 'save': {
   break;
 }
 
+ switch (command) {       
                   case 'fc': {
     if (args.length === 0) {
         return await socket.sendMessage(sender, {
@@ -1804,6 +1821,8 @@ case 'save': {
    }
            break;
             }
+
+    switch (command) {     
           case 'weather':
     try {
         // Messages in English
@@ -1868,6 +1887,8 @@ case 'save': {
         }
     }
     break;
+    }
+         switch (command) {
     case 'jid':
     try {
 
@@ -1893,6 +1914,8 @@ case 'save': {
         console.log(e);
     }
     break;
+         }
+    switch (command) {     
 
         case 'news':
         try {
