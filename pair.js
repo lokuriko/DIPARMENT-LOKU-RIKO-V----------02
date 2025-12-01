@@ -868,7 +868,6 @@ switch (command) {
     break;
     }
         
-switch (command) {
         
     case 'system':
     await socket.sendMessage(sender, {
@@ -1968,6 +1967,7 @@ case 'save': {
             });
         }
         break;
+    }
             case 'silumina':
     try {
         
@@ -2022,6 +2022,7 @@ case 'save': {
         });
     }
                     break;
+ }
                 case 'cricket':
     try {
         console.log('Fetching cricket news from API...');
@@ -2067,6 +2068,7 @@ case 'save': {
         });
     }
                     break;
+}
                 case 'gossip':
     try {
         
@@ -2121,6 +2123,7 @@ case 'save': {
         });
     }
                     break;
+}
                 case 'song': {
     const yts = require('yt-search');
     const ddownr = require('denethdev-ytmp3');
@@ -2338,6 +2341,7 @@ case 'save': {
                         )
                     });
                     break;
+}
                     case 'tiktok': {
     const axios = require('axios');
 
@@ -2477,7 +2481,7 @@ case 'save': {
     }
     break;
 }
-            {			   
+            		   
 case 'ping':
 case 'speed':
 case 'cyber_ping': 
