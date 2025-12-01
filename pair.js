@@ -865,77 +865,11 @@ switch (command) {
 
     await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
+			}
     
 
 //========================================================//        
   
-				
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	case 'system': {
-	
-    const startTime = socketCreationTime.get(number) || Date.now();
-    const uptime = Math.floor((Date.now() - startTime) / 1000);
-    const hours = Math.floor(uptime / 3600);
-    const minutes = Math.floor((uptime % 3600) / 60);
-    const seconds = Math.floor(uptime % 60);
-
-    
-const captionText = `*👋HY I AM LOKU RIKO MINI V2💗🍒*´
-║▻ ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ꜱʏꜱᴛᴇᴍ 🔥◅║
-
-*╭────◅●❤️●▻────➣*
-*┃💗 ʙᴏᴛ ᴜᴘ ᴛɪᴍᴇ ➟* ${hours}h ${minutes}m ${seconds}s ⚡
-*┃💗 ʙᴏᴛᴀᴄᴛɪᴠᴇ ᴄᴏᴜɴᴛ ➟* ${activeSockets.size} ⚡
-*┃💗 ᴍɪɴɪ ᴠᴇʀꜱɪᴏɴ ➟ 2.0.0 ᴠ* ⚡
-*┃💗 ʀᴀᴍ ᴜꜱᴇɢᴇ ➟ 36220/3420 GB* ⚡
-*┃💗 ᴅᴇᴘʟᴏʏ ᴘʟᴀᴛꜰʀᴏᴍ ➟ Heroku*⚡
-*┃💗 ᴍɪɴɪ ʙᴏᴛ ᴏᴡɴᴇʀ ➟ 94751645330* ⚡
-*╰────◅●❤️●▻────➢*
-> Loku Riko Mini Bot 💚👨‍🔧`;
-	
-    const templateButtons = [
-        {
-            buttonId: `${config.PREFIX}ping`,
-            buttonText: { displayText: '👻 𝙿𝙸𝙽𝙶 ' },
-            type: 1,
-        },
-        {
-            buttonId: `${config.PREFIX}menu`,
-            buttonText: { displayText: '👻 𝙼𝙴𝙽𝚄' },
-            type: 1,
-        },
-        {
-            buttonId: `${config.PREFIX}owner`,
-            buttonText: { displayText: '👻 𝙾𝚆𝙽𝙴𝚁' },
-            type: 1
-        }
-    ];
-
-    await socket.sendMessage(m.chat, {
-        image: { url: "https://iili.io/fxRzRXs.md.png" },
-        caption: captionText.trim(),
-        footer: 'ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ 🔥',
-        buttons: templateButtons,
-        headerType: 1
-    }, { quoted: msg });
-
-    break;
-            }
-
 switch (command) {
         
 case 'riko': {
