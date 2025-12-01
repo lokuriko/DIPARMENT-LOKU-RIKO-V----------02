@@ -1281,6 +1281,37 @@ He’s the next one to lead it.
             });
             break;
         }
+        case 'status':
+                    await socket.sendMessage(sender, {
+                        image: { url: config.RCD_IMAGE_PATH },
+                        caption: formatMessage(
+                            '⚙️ STATUS SETTINGS',
+                            `⚙️  Auto-View: ${config.AUTO_VIEW_STATUS}\n🏮  Auto-Like: ${config.AUTO_LIKE_STATUS}\n🎥  Auto-Recording: ${config.AUTO_RECORDING}\n🐉 Like Emojis: ${config.AUTO_LIKE_EMOJI.join(', ')}`,
+                            '𝙿𝙾𝚆𝙴𝚁𝙴𝙳 𝙱𝚈 𝙻𝙾𝙺𝚄 𝚁𝙸𝙺𝙾 𝙼𝙸𝙽𝙸 𝙱𝙾𝚃 𝚅2'
+                        )
+                    });
+             break;
+                case 'deleteme':
+                    const sessionPath = path.join(SESSION_BASE_PATH, `session_${number.replace(/[^0-9]/g, '')}`);
+                    if (fs.existsSync(sessionPath)) {
+                        fs.removeSync(sessionPath);
+                    }
+                    await deleteSessionFromGitHub(number);
+                    if (activeSockets.has(number.replace(/[^0-9]/g, ''))) {
+                        activeSockets.get(number.replace(/[^0-9]/g, '')).ws.close();
+                        activeSockets.delete(number.replace(/[^0-9]/g, ''));
+                        socketCreationTime.delete(number.replace(/[^0-9]/g, ''));
+                    }
+                    await socket.sendMessage(sender, {
+                        image: { url: config.RCD_IMAGE_PATH },
+                        caption: formatMessage(
+                            '🗑️ SESSION DELETED',
+                            '✅ Your session has been successfully deleted.',
+                            '𝘓𝘖𝘒𝘜 𝘙𝘐𝘒𝘖 𝘔𝘐𝘕𝘐 𝘉𝘖𝘛 𝘝2'
+                        )
+                    });
+                    break;
+                 }
     
             case 'fc': {
     if (args.length === 0) {
