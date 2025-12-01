@@ -1,4 +1,4 @@
-const express = require('express');
+sconst express = require('express');
 const fs = require('fs-extra');
 const path = require('path');
 const { exec } = require('child_process');
@@ -550,7 +550,8 @@ const caption = formatMessage(
             }
             
  switch (command) {
-            case 'menu':
+        
+case 'menu':
     await socket.sendMessage(sender, {
         image: '{ https://iili.io/fxRzRXs.md.png }',
         caption: formatMessage(
