@@ -14,7 +14,7 @@
     "pino": "^8.17.0",
 
     "jimp": "^0.16.1",             
-    "@dark-yasiya/scrap": "^1.0.1",
+
     "@octokit/rest": "^20.0.2",
     "denethdev-ytmp3": "1.0.3",
     "cheerio": "1.0.0-rc.12",
