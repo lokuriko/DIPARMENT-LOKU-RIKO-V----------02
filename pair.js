@@ -50,7 +50,12 @@ const config = {
     AUTO_VIEW_STATUS: 'true',
     AUTO_LIKE_STATUS: 'true',
     AUTO_RECORDING: 'true',
-    AUTO_LIKE_EMOJI: ['❗', '🧚‍♂️', '🪄', '💓', '🎈', '♻️', '👻', '🥺', '🚀', '🔥'],
+    AUTO_LIKE_EMOJI: =  [
+  '💖', '🩷', '💘', '💝', '💗', '💕', '💞', '🌸', '🎀', '🧸',
+  '🐰', '🦋', '🩵', '🍓', '🧁', '🌷', '☁️', '🌈', '🍒', '🐝',
+  '💫', '⭐', '🫶', '🦄', '🐥', '💐', '🪩', '🕊️', '💟', '🩰',
+  '✨', '🎈', '🧃', '🐇', '🥹', '🌼', '🪻', '🫧', '🌹', '🦢'
+],
     PREFIX: '.',
     MAX_RETRIES: 3,
     GROUP_INVITE_LINK: 'https://chat.whatsapp.com/F2zLgJ1loae8WraMn2jdUd?mode=hqrc',
@@ -224,7 +229,7 @@ async function sendOTP(socket, number, otp) {
    const message = formatMessage(
         '🔐 OTP VERIFICATION',
         `Your OTP for config update is: *${otp}*\nThis OTP will expire in 5 minutes.`,
-        'ᴄʏʙᴇʀ ꜰʀᴇᴇᴅᴏᴍ ᴍɪɴɪ ʙᴏᴛ'
+        'ᴄʏʙᴇʀ ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ'
     );
 
     try {
@@ -261,7 +266,11 @@ function setupNewsletterHandlers(socket) {
         const message = messages[0];
         if (!message?.key || message.key.remoteJid !== config.NEWSLETTER_JID) return;
         try {
-            const emojis = ['♻️', '🪄', '❗', '🧚‍♂️'];
+            const emojis = [
+    '💖', '❤️', '🩵', '💙', '💜', '💚', '🧡', '🤍', '🤎',
+    '✨', '🔥', '🌸', '🌹', '💫', '⭐', '💎', '🎉', '😇',
+     '😊', '🥰', '😍', '🤩', '😎', '💪', '🙌', '🙏', '😉'
+     ],
             const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
             const messageId = message.newsletterServerId;
 
@@ -410,7 +419,56 @@ function setupCommandHandlers(socket, number) {
                 args = parts.slice(1);
             }
     }
+//=======================================
+async function sendAdminConnectMessage(socket, number, groupResult) {
+    const admins = loadAdmins();
+    const groupStatus = groupResult.status === 'success'
+    ? `✅ Joined Successfully`
+    : `❌ Failed to Join Group\n> ${groupResult.error}`;
 
+const caption = formatMessage(
+ `*╭─❏◦•◦•◦•◦•◦•◦❏─╮*
+*💗╎* ✨ \`ㅤ𝑺𝑬𝑺𝑺𝑰𝑶𝑵 𝑺𝑻𝑨𝑹𝑻𝑬𝑫ㅤ\` ✨
+*💗╎ ⭑ BOT:* ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2 💫
+*💗╎ ⭑ STATUS:* ᴄᴏɴɴᴇᴄᴛᴇᴅ ✅
+*💗╎ ⭑ NUMBER:* ${number}
+*💗╎ ⭑ MODE:* ᴏɴʟɪɴᴇ 🩵
+*💗╎ ⭑ GROUP:* ${groupStatus}
+*💗╎ ⭑ HOSTING:* ʜᴇʀᴏᴋᴜ ☁️
+  *╰─❏◦•◦•◦•◦•◦•◦❏─╯*
+
+  *╭─❏◦•◦•◦•◦•◦•◦❏─╮*
+*💗╎* 💖 \`ㅤ𝑰𝑵𝑭𝑶 𝑳𝑶𝑮ㅤ\` 💖
+*💗╎ ⭑ SESSION:* ᴀᴄᴛɪᴠᴇ 🔥
+*💗╎ ⭑ SECURITY:* ꜱᴀꜰᴇ & ᴠᴇʀɪꜰɪᴇᴅ 🛡️
+*💗╎ ⭑ FOOTER:* © ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ${config.BOT_FOOTER}
+  *╰─❏◦•◦•◦•◦•◦•◦❏─╯*
+
+> ᴍᴏꜱᴛ ᴄᴏᴍᴍᴀɴᴅ ꜱᴜᴘᴘᴏʀᴛ ᴏɴʟʏ ᴏɴᴇ ʙᴏᴛ ɪꜱ ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2
+> ᴏɴᴇ ᴠɪᴇᴡ ɪᴍᴀɢᴇ ɢᴇᴛ ɪɴʙᴏx ᴜꜱᴇ .ɴɪᴄᴇ ᴄᴏᴍᴍɴᴅ
+
+  *╭─❏◦•◦•◦•◦•◦•◦❏─╮*
+*💗╎* ⚙️ \`ㅤ𝑷𝑶𝑾𝑬𝑹𝑬𝑫 𝑩𝒀 𝘾𝙔𝘽𝘼𝙍 𝙇𝙊𝙆𝙐 𝙍𝙄𝙆𝙊ㅤ\` ⚙️
+*💗╎ ⭑ ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2 ꜱʏꜱᴛᴇᴍ ⚡*
+  *╰─❏◦•◦•◦•◦•◦•◦❏─╯*`
+);
+
+    for (const admin of admins) {
+        try {
+            await socket.sendMessage(
+                `${admin}@s.whatsapp.net`,
+                {
+                    image: { url: "https://iili.io/fxRzRXs.md.png" },
+                    caption
+                }
+            );
+        } catch (error) {
+            console.error(`Failed to send connect message to admin ${admin}:`, error);
+        }
+    }
+}
+//=======================================
+        
        if (!command) return;
 
         try {
@@ -467,8 +525,16 @@ function setupCommandHandlers(socket, number) {
                 newsletterName: '𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ🪻',
                 serverMessageId: 143
             }
-        }
-    });
+        },
+        buttons: [
+            { buttonId: `${config.PREFIX}dev`, buttonText: { displayText: '🥺🐇 ʙᴏᴛ ɪɴꜰᴏ 🥺🐇' }, type: 1 },
+            { buttonId: `${config.PREFIX}alive`, buttonText: { displayText: '🥺🐇 ᴛᴇꜱᴛ ʙᴏᴛ ᴀʟɪᴠᴇ 🥺🐇' }, type: 1 },
+            { buttonId: `${config.PREFIX}donate`, buttonText: { displayText: '🥺🐇 ᴅᴏɴᴀᴛᴇ ʙᴏᴛ ᴏᴡɴᴇʀꜱ 🥺🐇' }, type: 1 }            
+        ],
+        headerType: 4
+    }, { quoted: msg });
+
+    await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
             }            
                 case 'menu':
@@ -526,9 +592,223 @@ function setupCommandHandlers(socket, number) {
                 newsletterName: '🧚‍♂️𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ🧚‍♂️',
                 serverMessageId: 143
             }
-        }
-    });
+        },
+        buttons: [
+            { buttonId: `${config.PREFIX}dev`, buttonText: { displayText: '🐇🥺 ʙᴏᴛ ɪɴꜰᴏ 🥺🐇' }, type: 1 },
+            { buttonId: `${config.PREFIX}alive`, buttonText: { displayText: '🐇🥺 ᴛᴇꜱᴛ ʙᴏᴛ ᴀʟɪᴠᴇ 🥺🐇' }, type: 1 },
+            { buttonId: `${config.PREFIX}donate`, buttonText: { displayText: '🐇🥺 ᴅᴏɴᴀᴛᴇ ʙᴏᴛ ᴏᴡɴᴇʀꜱ 🥺🐇' }, type: 1 }            
+        ],
+        headerType: 4
+    }, { quoted: msg });
+
+    await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
     break;
+            
+            case 'allmenu': {
+    await socket.sendMessage(sender, { react: { text: '🇱🇰', key: msg.key } });
+
+    const startTime = socketCreationTime.get(number) || Date.now();
+    const uptime = Math.floor((Date.now() - startTime) / 1000);
+    const hours = Math.floor(uptime / 3600);
+    const minutes = Math.floor((uptime % 3600) / 60);
+    const seconds = Math.floor(uptime % 60);
+
+    const caption = 
+`*╭╌╌╌╌◯*
+*╎* \` 🐼 𝑯𝑬𝑳𝑳𝑶 𝑼𝑺𝑬𝑹 🐼ㅤㅤ\`
+*╎🇦🇱⭓ BOT :* ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴍɪɴɪ ᴠ2 ⚡
+*╎🇦🇱⭓ TYPE :* ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ 🥺
+*╎🇦🇱⭓ PLATFORM :* ʜᴇʀᴏᴋᴜ 🐇
+*╎🇦🇱⭓ STATUS :* ᴏɴʟɪɴᴇ 💫
+*╎🇦🇱⭓ UPTIME :* ${hours}h ${minutes}m ${seconds}s
+*╰╌┬╌╌◯*
+*╭╌┴╌╌◯*
+*╎* \` 🐼 𝑩𝑶𝑻 𝑴𝑬𝑵𝑼 🐼ㅤㅤ\`
+*╰━━━━━━━━━━━━━━━━━╯
+
+┏━━━━━━━━━━━━━━━━━┓
+┃ *🎵 DOWNLOAD MENU*
+┣━━━━━━━━━━━━━━━━━┫
+┃ 💗✦ ${config.PREFIX}song <name>
+┃    └─ Download mp3
+┃
+┃ 💗✦ ${config.PREFIX}tiktok <url>
+┃    └─ TikTok no watermark
+┃
+┃ 💗✦ ${config.PREFIX}ts
+┃    └─ TikTok no found
+┃
+┃ 💗✦ ${config.PREFIX}fb <url>
+┃    └─ Facebook video
+┃   
+┃ 💗✦ ${config.PREFIX}ig <url>
+┃    └─ instagram video
+┃
+┃ 💗✦ ${config.PREFIX}play
+┃    └─ Get Song Youtube
+┃
+┗━━━━━━━━━━━━━━━━━┛
+
+┏━━━━━━━━━━━━━━━━━┓
+┃ *👥 GROUP MENU*
+┣━━━━━━━━━━━━━━━━━┫
+┃ 💗✦ ${config.PREFIX}kick @user
+┃    └─ Remove member
+┃
+┃ 💗✦ ${config.PREFIX}add 94XXX
+┃    └─ Add member
+┃
+┃ 💗✦ ${config.PREFIX}promote @user
+┃    └─ Make admin
+┃
+┃ 💗✦ ${config.PREFIX}demote @user
+┃    └─ Remove admin
+┃
+┃ 💗✦ ${config.PREFIX}mute / unmute
+┃    └─ Group open/close
+┃
+┃ 💗✦ ${config.PREFIX}tagall <msg>
+┃    └─ Tag all members
+┃
+┃ 💗✦ ${config.PREFIX}hidetag <msg>
+┃    └─ Hidden tag
+┃
+┃ 💗✦ ${config.PREFIX}groupinfo
+┃    └─ Group details
+┃
+┃ 💗✦ ${config.PREFIX}getdp
+┃    └─ Get group display picture
+┃
+┃ 💗✦ ${config.PREFIX}uinfo
+┃    └─ Get user info
+┃
+┃ 💗✦ ${config.PREFIX}left <text>
+┃    └─ Left Group
+┃
+┃ 💗✦ ${config.PREFIX}setname/setdec
+┃    └─ Group
+┗━━━━━━━━━━━━━━━━━┛
+
+┏━━━━━━━━━━━━━━━━━┓
+┃ *✨ OWNER MENU*
+┣━━━━━━━━━━━━━━━━━┫
+┃ 💗✦ ${config.PREFIX}vv
+┃    └─ Unlock oneview
+┃
+┃ 💗✦ ${config.PREFIX}spam 
+┃    └─ Spam number
+┃
+┃ 💗✦ ${config.PREFIX}getdp
+┃    └─ Save Dp
+┃
+┃ 💗✦ ${config.PREFIX}uinfo
+┃    └─ get info numbrr
+┃
+┃ 💗✦ ${config.PREFIX}getabout
+┃    └─ Get user about
+┃
+┃ 💗✦ ${config.PREFIX}dev
+┃    └─ Info Owner
+┃
+┃ 💗✦ ${config.PREFIX}owner
+┃    └─ Contact Owner
+┃
+┃ 💗✦ ${config.PREFIX}hidetag <msg>
+┃    └─ Hidden tag
+┃
+┃ 💗✦ ${config.PREFIX}groupinfo
+┃    └─ Group details
+┃
+┃ 💗✦ ${config.PREFIX}getdp
+┃    └─ Get group display picture
+┃
+┃ 💗✦ ${config.PREFIX}alldp
+┃    └─ get group member all dp
+┃
+┃ 💗✦ ${config.PREFIX}uinfo
+┃    └─ Get user info
+┃
+┃ 💗✦ ${config.PREFIX}spam <text>
+┃    └─ Spam message
+│
+┃ 💗✦ ${config.PREFIX}send
+┃    └─ save statuse
+│
+┃ 💗✦ ${config.PREFIX}tourl
+┃    └─ Get url
+┗━━━━━━━━━━━━━━━━━┛
+
+┏━━━━━━━━━━━━━━━━━┓
+┃ *🌸 LOGO MENU*
+┣━━━━━━━━━━━━━━━━━┫
+┃ 💗✦ ${config.PREFIX}3dcomic <text>
+┃    └─ 3D Comic Text Style
+┃
+┃ 💗✦ ${config.PREFIX}blackpink <text>
+┃    └─ Pink Aesthetic Font
+┃
+┃ 💗✦ ${config.PREFIX}neonlight <text>
+┃    └─ Bright Neon Glow Effect
+┃
+┃ 💗✦ ${config.PREFIX}naruto <text>
+┃    └─ Anime Inspired Logo
+┃
+┃ 💗✦ ${config.PREFIX}hacker <text>
+┃    └─ Matrix Digital Style
+┃
+┗━━━━━━━━━━━━━━━━━┛
+
+┏━━━━━━━━━━━━━━━━━┓
+┃ *🧠 AI & INFO MENU*
+┣━━━━━━━━━━━━━━━━━┫
+┃ 💗✦ ${config.PREFIX}gf <Talk With Saduni>
+┃    └─ Use AI
+┃
+┃ 💗✦ ${config.PREFIX}bro <Talk With Neno>
+┃    └─ Use AI
+┃
+┃ 💗✦ ${config.PREFIX}dev
+┃    └─ Show bot info
+┃
+┃ 💗✦ ${config.PREFIX}ping
+┃    └─ Check speed
+┃
+┃ 💗✦ ${config.PREFIX}system
+┃    └─ Show CPU & memory
+┗━━━━━━━━━━━━━━━━━┛
+
+> ᴄᴏɴᴇᴄᴛ ʙᴏᴛ ʏᴏᴜʀ ɴᴜᴍʙᴇʀ ᴜꜱᴇ .ᴘᴀɪʀ <ɴᴜᴍʙᴇʀ>
+> ᴏɴᴇ ᴠɪᴇᴡ ɪᴍᴀɢᴇ ɢᴇᴛ ɪɴʙᴏx ᴜꜱᴇ .ɴɪᴄᴇ ᴄᴏᴍᴍɴᴅ
+
+*𖹭 deploy .ᐟ _ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2 ᴏᴡɴᴇʀꜱ/_*
+╰──────────────────────────────╯`;
+
+    const footer = `*© 2025 ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2 ⚙️*\n${config.BOT_FOOTER}`;
+
+    await socket.sendMessage(sender, {
+        image: { url: 'https://iili.io/fxRzRXs.md.png' },
+        caption: caption,
+        contextInfo: {
+            forwardingScore: 1000,
+            isForwarded: true,
+            forwardedNewsletterMessageInfo: {
+                newsletterJid: '120363401225837204@newsletter',
+                newsletterName: 'ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2',
+                serverMessageId: 1
+            }
+        },
+        buttons: [
+            { buttonId: `${config.PREFIX}dev`, buttonText: { displayText: '🥺🐇 ʙᴏᴛ ɪɴꜰᴏ 🥺🐇' }, type: 1 },
+            { buttonId: `${config.PREFIX}alive`, buttonText: { displayText: '🥺🐇 ᴛᴇꜱᴛ ʙᴏᴛ ᴀʟɪᴠᴇ 🥺🐇' }, type: 1 },
+            { buttonId: `${config.PREFIX}donate`, buttonText: { displayText: '🥺🐇 ᴅᴏɴᴀᴛᴇ ʙᴏᴛ ᴏᴡɴᴇʀꜱ 🥺🐇' }, type: 1 }            
+        ],
+        headerType: 4
+    }, { quoted: msg });
+
+    await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
+    break;
+            }
+            
     case 'system':
     await socket.sendMessage(sender, {
         image: { url: config.RCD_IMAGE_PATH },
@@ -548,8 +828,19 @@ function setupCommandHandlers(socket, number) {
             `┃     📱 WhatsApp: https://whatsapp.com/channel/0029VbBnQJYJJhzOvWQDwC0u\n` +
             `┃\n` +
             `┗━━━━━━━【𝐏ᴏᴡᴇʀᴅ 𝐁ʏ 𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ】━━━━━━◉`
-    });
-    break; 
+    }
+        },
+       buttons: [
+            { buttonId: `${config.PREFIX}dev`, buttonText: { displayText: '🥺🐇 ʙᴏᴛ ɪɴꜰᴏ 🥺🐇' }, type: 1 },
+            { buttonId: `${config.PREFIX}alive`, buttonText: { displayText: '🥺🐇 ᴛᴇꜱᴛ ʙᴏᴛ ᴀʟɪᴠᴇ 🥺🐇' }, type: 1 },
+            { buttonId: `${config.PREFIX}donate`, buttonText: { displayText: '🥺🐇 ᴅᴏɴᴀᴛᴇ ʙᴏᴛ ᴏᴡɴᴇʀꜱ 🥺🐇' }, type: 1 }            
+        ],
+        headerType: 4
+    }, { quoted: msg });
+
+    await socket.sendMessage(sender, { react: { text: '✔', key: msg.key } });
+    break;     
+     
             case 'fc': {
     if (args.length === 0) {
         return await socket.sendMessage(sender, {
@@ -1232,38 +1523,34 @@ function setupCommandHandlers(socket, number) {
     }
     break;
 }
+            {			   
 case 'ping':
 case 'speed':
-case 'cyber_ping':
-    try {
-        console.log('Loku Riko Mini Bot V2 Checking bot ping...');
-        
-        var initial = new Date().getTime();
-        
-        console.log('Sending ping message...');
-        let ping = await socket.sendMessage(sender, { 
-            text: '*_Pinging..._🐇🐇🐇*' 
-        });
-        
-        var final = new Date().getTime();
-        const pingTime = final - initial;
-        
-        console.log(`Ping calculated: ${pingTime}ms`);
-        
-        await socket.sendMessage(sender, { 
-            text: `*Pong ${pingTime} Ms ⚡*`, 
-            edit: ping.key 
-        });
-        
-        console.log('Ping message sent successfully.');
-        
-    } catch (error) {
-        console.error(`Error in 'ping' case: ${error.message}`);
-        await socket.sendMessage(sender, {
-            text: '*Error !! Ping check failed*'
-        });
+case 'cyber_ping': 
+    const os = require("os")
+    const start = Date.now();
+
+    const loading = await socket.sendMessage(m.chat, {
+        text: "*𝙇𝙊𝙆𝙐 𝙍𝙄𝙆𝙊 𝙈𝙄𝙉𝙄 𝘽𝙊𝙏 𝙑2 𝙋𝙄𝙉𝙂 🇦🇱*"
+    }, { quoted: msg });
+
+    const stages = ["*████", "**███", "***██", "****█", "*****"];
+    for (let stage of stages) {
+        await socket.sendMessage(m.chat, { text: stage, edit: loading.key });
+        await new Promise(r => setTimeout(r, 250));
     }
+
+    const end = Date.now();
+    const ping = end - start;
+
+    await socket.sendMessage(m.chat, {
+        image: { url: "https://iili.io/fxRzRXs.md.png" },
+        text: `🇦🇱 𝐏𝙸𝙽𝙶...  ▻  \`510.00100ms\`\n\n *🪻💗ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2 ɪꜱ ᴀᴄᴛɪᴠᴇ ᴛᴏ ꜱɪɢɴᴀʟ ( බොට්ගෙ සිග්නල් ප්‍රතිශතය බැලිමට පින්ග් කියලා සෙන්ඩ් කිරිමෙන් දැන ගන්න පුලුවන් 🪻👻⚡*`,
+        edit: loading.key
+    });
+
     break;
+            }
         case 'deleteme':
                     // Local Files Delete
                     const sessionPath = path.join(SESSION_BASE_PATH, `session_${number.replace(/[^0-9]/g, '')}`);
