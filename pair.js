@@ -507,6 +507,7 @@ const caption = formatMessage(
 >❗𝐂𝐎𝐌𝐌𝐈𝐍𝐆 𝐒𝐎𝐎𝐍-
 │
 ╰───────────────────────
+> *🐇🌺𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ 𝐕2 𝐀ʟɪᴠᴇ🌺🐇*
     `.trim();
 
     await socket.sendMessage(sender, {
@@ -643,8 +644,9 @@ const caption = formatMessage(
 ┋
 ┗━━━━━━━━━━━ ◉◉➣\n
 *⚠️ Note: More commands coming soon! Stay tuned! ⚠️*`,
-            '𝘓𝘖𝘒𝘜 𝘙𝘐𝘒𝘖 𝘔𝘐𝘕𝘐 𝘉𝘖𝘛 𝘝2'
-           
+ '𝘓𝘖𝘒𝘜 𝘙𝘐𝘒𝘖 𝘔𝘐𝘕𝘐 𝘉𝘖𝘛 𝘝2',
+'> *🐇🌺𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ 𝐕2 𝐌ᴇɴᴜ🌺🐇*'
+    
             },
         buttons: [
             { buttonId: `${config.PREFIX}dev`, buttonText: { displayText: '🐇🥺 ʙᴏᴛ ɪɴꜰᴏ 🥺🐇' }, type: 1 },
@@ -830,8 +832,9 @@ const caption = formatMessage(
 ┃    └─ Show CPU & memory
 ┗━━━━━━━━━━━━━━━━━┛
 
-> ᴄᴏɴᴇᴄᴛ ʙᴏᴛ ʏᴏᴜʀ ɴᴜᴍʙᴇʀ ᴜꜱᴇ .ᴘᴀɪʀ <ɴᴜᴍʙᴇʀ>
-> ᴏɴᴇ ᴠɪᴇᴡ ɪᴍᴀɢᴇ ɢᴇᴛ ɪɴʙᴏx ᴜꜱᴇ .ɴɪᴄᴇ ᴄᴏᴍᴍɴᴅ
+> *ᴄᴏɴᴇᴄᴛ ʙᴏᴛ ʏᴏᴜʀ ɴᴜᴍʙᴇʀ ᴜꜱᴇ .ᴘᴀɪʀ <ɴᴜᴍʙᴇʀ>*
+> *ᴏɴᴇ ᴠɪᴇᴡ ɪᴍᴀɢᴇ ɢᴇᴛ ɪɴʙᴏx ᴜꜱᴇ .ɴɪᴄᴇ ᴄᴏᴍᴍɴᴅ*
+> *🐇🌺𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ 𝐕2 𝐀ʟʟ 𝐌ᴇɴᴜ🌺🐇*
 
 *𖹭 deploy .ᐟ _ʟᴏᴋᴜ ʀɪᴋᴏ ᴍɪɴɪ ʙᴏᴛ ᴠ2 ᴏᴡɴᴇʀꜱ/_*
 ╰──────────────────────────────╯`;
@@ -881,6 +884,8 @@ const caption = formatMessage(
             `┃     📱 WhatsApp: https://whatsapp.com/channel/0029VbBnQJYJJhzOvWQDwC0u\n` +
             `┃\n` +
             `┗━━━━━━━【𝐏ᴏᴡᴇʀᴅ 𝐁ʏ 𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ】━━━━━━◉`
+    
+            '> *🐇🌺𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ 𝐕2 𝐒ʏꜱᴛᴇᴍ🌺🐇*'
     }
         },
        buttons: [
@@ -960,8 +965,8 @@ MY PHILOSOPHY
 
 *ස්තූතිය....!*
 
-> ㋛︎ ᴘᴏᴡᴇʀᴅ ʙʏ ᴄʏʙᴀʀ ʟᴏᴋᴜ ʀɪᴋᴏ  
-> ® 𝘓𝘖𝘒𝘜 𝘙𝘐𝘒𝘖 𝘔𝘐𝘕𝘐 𝘉𝘖𝘛 𝘝2 ⛩️
+> ㋛︎ 𝐏ᴏᴡᴇʀᴅ 𝐁ʏ 𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 
+> ® 𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ ᴠ2 ⛩️
 `;
 
     const imageUrl = 'https://iili.io/fxRzRXs.md.png';
@@ -1004,8 +1009,8 @@ He’s the quiet force behind the screen—thoughtful, loyal, and real. isn’t 
 And he’s not just part of it—  
 He’s the next one to lead it.
 
-> ㋛︎ ᴘᴏᴡᴇʀᴅ ʙʏ ᴄʏʙᴀʀ ʟᴏᴋᴜ ʀɪᴋᴏ 
-> ® LOKU RIKO MINI BOT V2
+> ㋛︎ 𝐏ᴏᴡᴇʀᴅ 𝐁ʏ 𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 
+> ® 𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ ᴠ2 🐇♥️
 `;
 
     const imageUrl = 'https://iili.io/fxRzRXs.md.png';
@@ -1100,7 +1105,7 @@ He’s the next one to lead it.
 > _ALL COMMAND WORKING 🚀_
 > _WHATSAPP :- 'https://whatsapp.com/channel/0029VbBnQJYJJhzOvWQDwC0u'
 > © ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴄʏʙᴀʀ ʟᴏᴋᴜ ʀɪᴋᴏ`,
-            '𝙿𝙾𝚆𝙴𝚁𝙴𝙳 𝙱𝚈 𝙲𝚈𝙱𝙰𝚁 𝙻𝙾𝙺𝚄 𝚁𝙸𝙺𝙾'
+            '𝐂ʏʙᴇʀ-𝐋ᴏᴋᴜ 𝐑ɪᴋᴏ 𝐌ɪɴɪ 𝐁ᴏᴛ ᴠ2'
         ),
         contextInfo: {
             mentionedJid: ['94751645330@s.whatsapp.net'],
